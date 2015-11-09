@@ -1,26 +1,50 @@
 apply plugin: 'com.android.application'
 
+Properties props = new Properties()
+try {
+    props.load(file('private.properties').newDataInputStream())
+} catch (Exception ex) {
+}
+
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion _compileSdkVersion
+    buildToolsVersion _buildToolsVersion
 
     defaultConfig {
         applicationId "nl.endran.locust"
-        minSdkVersion 15
-        targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion _minSdkVersion
+        targetSdkVersion _targetSdkVersion
+        versionCode _versionCode
+        versionName "1.0 (${getDetails()})"
     }
+
+    signingConfigs {
+        release {
+            storeFile project.rootProject.file('keystore.jks')
+            storePassword props.getProperty("storePassword")
+            keyAlias props.getProperty("keyAlias")
+            keyPassword props.getProperty("keyPassword")
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.0'
+
+    testCompile 'junit:junit:4.12'
+}
+
+def getDetails() {
+    def details = """git rev-parse --short HEAD""".execute().text.trim()
+    def workingBranch = """git rev-parse --abbrev-ref HEAD""".execute().text.trim()
+    return details + ' ' + workingBranch
 }
