@@ -5,34 +5,46 @@
 package nl.endran.locust;
 
 import android.app.Application;
+import android.support.annotation.NonNull;
 
-import nl.endran.locust.wrappers.Analytics;
-import nl.endran.locust.wrappers.CrashTracking;
-import nl.endran.locust.wrappers.FabricFactory;
-import nl.endran.locust.wrappers.GoogleAnalyticsFactory;
+import javax.inject.Inject;
 
-public class App extends Application {
+import nl.endran.locust.injections.AppComponent;
+import nl.endran.locust.injections.AppGraph;
+import nl.endran.locust.injections.AppModule;
+import nl.endran.locust.injections.DaggerAppComponent;
 
-    private Analytics analytics;
+public class App extends Application implements AppGraph {
+
+    private AppComponent appComponent;
+
+    @Inject
+    Starters starters;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        initCrashTracking();
-        initAnalytics();
+        initGraph();
+
+        appComponent.injectApp(this);
+        starters.start(this);
     }
 
-    private void initCrashTracking() {
-        CrashTracking crashTracking = new CrashTracking(new FabricFactory());
-        crashTracking.start(this);
+    private void initGraph() {
+
+        AppModule appModule = new AppModule(this);
+
+        if (appComponent == null) {
+            appComponent = DaggerAppComponent.builder()
+                    .appModule(appModule)
+                    .build();
+        }
     }
 
-    private void initAnalytics() {
-        analytics = new Analytics(this, new GoogleAnalyticsFactory());
-    }
-
-    public Analytics getAnalytics() {
-        return analytics;
+    @NonNull
+    @Override
+    public AppComponent getAppComponent() {
+        return appComponent;
     }
 }

@@ -12,6 +12,8 @@ import android.support.v4.app.Fragment;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import nl.endran.locust.R;
 import nl.endran.locust.fragments.ResourcesFragment;
 import nl.endran.locust.fragments.TerritoryFragment;
@@ -25,6 +27,7 @@ public class StringResourceMap {
     @NonNull
     private final Map<Class, Integer> classToStringResMap = new HashMap<>();
 
+    @Inject
     public StringResourceMap(@NonNull final Resources resources) {
         this.resources = resources;
 

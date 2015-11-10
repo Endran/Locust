@@ -12,15 +12,27 @@ import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import nl.endran.locust.BuildConfig;
 import nl.endran.locust.R;
 
+@Singleton
 public class Analytics {
 
-    @Nullable
-    private final Tracker tracker;
+    @NonNull
+    private final GoogleAnalyticsFactory analyticsFactory;
 
-    public Analytics(@NonNull final Context context, @NonNull final GoogleAnalyticsFactory analyticsFactory) {
+
+    @Nullable
+    private Tracker tracker;
+    @Inject
+    public Analytics(@NonNull final GoogleAnalyticsFactory analyticsFactory) {
+        this.analyticsFactory = analyticsFactory;
+    }
+
+    public void start(@NonNull final Context context) {
         if (shouldInitTracker()) {
             GoogleAnalytics googleAnalytics = analyticsFactory.create(context);
             tracker = googleAnalytics.newTracker(R.xml.global_tracker);

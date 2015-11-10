@@ -9,13 +9,18 @@ import android.support.annotation.NonNull;
 
 import com.crashlytics.android.Crashlytics;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import nl.endran.locust.BuildConfig;
 
+@Singleton
 public class CrashTracking {
 
     @NonNull
     private FabricFactory fabricFactory;
 
+    @Inject
     public CrashTracking(@NonNull final FabricFactory fabricFactory) {
         this.fabricFactory = fabricFactory;
     }
