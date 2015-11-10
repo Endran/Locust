@@ -2,7 +2,7 @@
  * Copyright (c) 2015 by David Hardy. Licensed under the Apache License, Version 2.0.
  */
 
-package nl.endran.locust;
+package nl.endran.locust.maps;
 
 import android.content.res.Resources;
 import android.support.annotation.NonNull;
@@ -11,6 +11,11 @@ import android.support.v4.app.Fragment;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import nl.endran.locust.R;
+import nl.endran.locust.fragments.ResourcesFragment;
+import nl.endran.locust.fragments.TerritoryFragment;
+import nl.endran.locust.fragments.UnitsFragment;
 
 public class StringResourceMap {
 

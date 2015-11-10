@@ -2,7 +2,7 @@
  * Copyright (c) 2015 by David Hardy. Licensed under the Apache License, Version 2.0.
  */
 
-package nl.endran.locust;
+package nl.endran.locust.activities;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,6 +13,12 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+
+import nl.endran.locust.R;
+import nl.endran.locust.maps.StringResourceMap;
+import nl.endran.locust.fragments.ResourcesFragment;
+import nl.endran.locust.fragments.TerritoryFragment;
+import nl.endran.locust.fragments.UnitsFragment;
 
 public class GameActivity extends AppCompatActivity {
 
