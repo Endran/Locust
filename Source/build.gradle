@@ -32,6 +32,8 @@ allprojects {
     ext._minSdkVersion = 15
     ext._targetSdkVersion = 23
     ext._versionCode = 1
+
+    ext.appCompatVersion = '23.1.0'
 }
 
 task clean(type: Delete) {
