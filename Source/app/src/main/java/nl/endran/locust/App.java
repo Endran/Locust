@@ -27,7 +27,7 @@ public class App extends Application implements AppGraph {
 
         initGraph();
 
-        appComponent.injectApp(this);
+        appComponent.inject(this);
         starters.start(this);
     }
 

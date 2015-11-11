@@ -8,10 +8,13 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import nl.endran.locust.App;
+import nl.endran.locust.activities.GameActivity;
 
 @Singleton
 @Component(modules = {AppModule.class})
 public interface AppComponent {
 
-    void injectApp(App app);
+    void inject(App app);
+
+    void inject(GameActivity gameActivity);
 }

@@ -15,6 +15,10 @@ import nl.endran.locust.R;
 
 public class ResourcesFragment extends Fragment {
 
+    public static ResourcesFragment createInstance(){
+        return new ResourcesFragment();
+    }
+
     @Nullable
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {

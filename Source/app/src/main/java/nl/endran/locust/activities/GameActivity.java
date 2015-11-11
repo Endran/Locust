@@ -14,30 +14,35 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import javax.inject.Inject;
+
+import butterknife.ButterKnife;
 import nl.endran.locust.R;
-import nl.endran.locust.maps.StringResourceMap;
 import nl.endran.locust.fragments.ResourcesFragment;
 import nl.endran.locust.fragments.TerritoryFragment;
 import nl.endran.locust.fragments.UnitsFragment;
+import nl.endran.locust.injections.AppGraph;
+import nl.endran.locust.maps.StringResourceMap;
 
 public class GameActivity extends AppCompatActivity {
 
-    private StringResourceMap stringResourceMap;
+    @Inject
+    StringResourceMap stringResourceMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        stringResourceMap = new StringResourceMap(getResources());
+        ((AppGraph)getApplication()).getAppComponent().inject(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = ButterKnife.findById(this, R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+        ViewPager viewPager = ButterKnife.findById(this, R.id.viewPager);
         viewPager.setAdapter(new GameFragmentPagerAdapter(getSupportFragmentManager()));
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        TabLayout tabLayout = ButterKnife.findById(this, R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPager);
     }
 
@@ -49,9 +54,9 @@ public class GameActivity extends AppCompatActivity {
         public GameFragmentPagerAdapter(@NonNull final FragmentManager fm) {
             super(fm);
             fragments = new Fragment[3];
-            fragments[0] = new UnitsFragment();
-            fragments[1] = new ResourcesFragment();
-            fragments[2] = new TerritoryFragment();
+            fragments[0] = UnitsFragment.createInstance();
+            fragments[1] = ResourcesFragment.createInstance();
+            fragments[2] = TerritoryFragment.createInstance();
         }
 
         @Override

@@ -15,6 +15,10 @@ import nl.endran.locust.R;
 
 public class UnitsFragment extends Fragment {
 
+    public static UnitsFragment createInstance(){
+        return new UnitsFragment();
+    }
+
     @Nullable
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {

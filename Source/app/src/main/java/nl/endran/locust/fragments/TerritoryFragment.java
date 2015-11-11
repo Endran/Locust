@@ -15,6 +15,10 @@ import nl.endran.locust.R;
 
 public class TerritoryFragment extends Fragment {
 
+    public static TerritoryFragment createInstance(){
+        return new TerritoryFragment();
+    }
+
     @Nullable
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
