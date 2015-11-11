@@ -61,6 +61,8 @@ dependencies {
         transitive = true;
     }
 
+    compile "com.google.code.gson:gson:${gsonVersion}"
+
     compile "com.jakewharton:butterknife:${butterKnifeVersion}"
 
     compile "com.google.dagger:dagger:${daggerVersion}"

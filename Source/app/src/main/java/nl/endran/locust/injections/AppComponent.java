@@ -8,6 +8,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import nl.endran.locust.App;
+import nl.endran.locust.activities.BaseActivity;
 import nl.endran.locust.activities.GameActivity;
 
 @Singleton
@@ -17,4 +18,6 @@ public interface AppComponent {
     void inject(App app);
 
     void inject(GameActivity gameActivity);
+
+    void inject(BaseActivity baseActivity);
 }

@@ -40,6 +40,7 @@ allprojects {
     ext.butterKnifeVersion = '7.0.1'
     ext.crashlyticsVersion = '2.5.2'
     ext.daggerVersion = '2.0.1'
+    ext.gsonVersion = '2.4'
     ext.jUnitVersion = '4.12'
     ext.javaxAnnotationVersion = '10.0-b28'
     ext.licenseDialogVersion = '1.8.0'

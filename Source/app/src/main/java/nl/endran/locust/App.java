@@ -5,6 +5,7 @@
 package nl.endran.locust;
 
 import android.app.Application;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 
 import javax.inject.Inject;
@@ -33,7 +34,7 @@ public class App extends Application implements AppGraph {
 
     private void initGraph() {
 
-        AppModule appModule = new AppModule(this);
+        AppModule appModule = new AppModule(this, new Handler());
 
         if (appComponent == null) {
             appComponent = DaggerAppComponent.builder()

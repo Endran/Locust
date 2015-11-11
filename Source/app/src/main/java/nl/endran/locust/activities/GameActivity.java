@@ -11,7 +11,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import javax.inject.Inject;
@@ -24,7 +23,7 @@ import nl.endran.locust.fragments.UnitsFragment;
 import nl.endran.locust.injections.AppGraph;
 import nl.endran.locust.maps.StringResourceMap;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends BaseActivity {
 
     @Inject
     StringResourceMap stringResourceMap;
@@ -32,7 +31,6 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
 
         ((AppGraph)getApplication()).getAppComponent().inject(this);
 
@@ -44,6 +42,16 @@ public class GameActivity extends AppCompatActivity {
 
         TabLayout tabLayout = ButterKnife.findById(this, R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPager);
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_game;
+    }
+
+    @Override
+    protected String getPageName() {
+        return "GameActivity";
     }
 
     private class GameFragmentPagerAdapter extends FragmentPagerAdapter {
