@@ -10,6 +10,7 @@ import dagger.Component;
 import nl.endran.locust.App;
 import nl.endran.locust.activities.BaseActivity;
 import nl.endran.locust.activities.GameActivity;
+import nl.endran.locust.fragments.UnitsFragmentPresenter;
 
 @Singleton
 @Component(modules = {AppModule.class})
@@ -20,4 +21,6 @@ public interface AppComponent {
     void inject(GameActivity gameActivity);
 
     void inject(BaseActivity baseActivity);
+
+    UnitsFragmentPresenter createUnitsFragmentPresenter();
 }
