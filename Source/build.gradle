@@ -12,6 +12,7 @@ buildscript {
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath 'com.google.gms:google-services:1.4.0-beta3'
         classpath 'io.fabric.tools:gradle:1.+'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.+'
     }
 }
 
@@ -43,6 +44,7 @@ allprojects {
     ext.gsonVersion = '2.4'
     ext.jUnitVersion = '4.12'
     ext.javaxAnnotationVersion = '10.0-b28'
+    ext.kotlinVersion = '0.6.+'
     ext.licenseDialogVersion = '1.8.0'
     ext.playServicesVersion = '8.1.0'
     ext.stethoVersion = '1.2.0'
