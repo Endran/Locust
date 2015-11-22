@@ -16,7 +16,7 @@ import nl.endran.locust.R
 import nl.endran.locust.fragments.ResourcesFragment
 import nl.endran.locust.fragments.TerritoryFragment
 import nl.endran.locust.fragments.UnitsFragment
-import nl.endran.locust.injections.AppGraph
+import nl.endran.locust.injections.getAppComponent
 import nl.endran.locust.maps.StringResourceMap
 
 class GameActivity : BaseActivity() {
@@ -24,7 +24,7 @@ class GameActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val stringResourceMap = (application as AppGraph).appComponent.stringResourceMap
+        val stringResourceMap = getAppComponent().stringResourceMap
 
         val toolbar = ButterKnife.findById<Toolbar>(this, R.id.toolbar)
         setSupportActionBar(toolbar)

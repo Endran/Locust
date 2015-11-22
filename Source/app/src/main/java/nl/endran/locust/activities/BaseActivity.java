@@ -6,7 +6,6 @@ package nl.endran.locust.activities;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -34,7 +33,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
 
-        AppComponent appComponent = getAppComponent();
+        AppComponent appComponent = ((AppGraph) getApplication()).getAppComponent();
         appComponent.inject(this);
 
         analytics.trackPage(getPageName());
@@ -53,11 +52,6 @@ public abstract class BaseActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    @NonNull
-    protected AppComponent getAppComponent() {
-        return ((AppGraph) getApplication()).getAppComponent();
     }
 
     @LayoutRes
