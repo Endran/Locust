@@ -11,6 +11,7 @@ import nl.endran.locust.App;
 import nl.endran.locust.activities.BaseActivity;
 import nl.endran.locust.activities.GameActivity;
 import nl.endran.locust.fragments.UnitsFragmentPresenter;
+import nl.endran.locust.maps.StringResourceMap;
 
 @Singleton
 @Component(modules = {AppModule.class})
@@ -23,4 +24,6 @@ public interface AppComponent {
     void inject(BaseActivity baseActivity);
 
     UnitsFragmentPresenter createUnitsFragmentPresenter();
+
+    StringResourceMap getStringResourceMap();
 }
