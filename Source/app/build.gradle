@@ -42,16 +42,20 @@ android {
             signingConfig signingConfigs.release
         }
     }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
 }
 
 repositories {
     jcenter()
     maven { url "https://maven.fabric.io/repo" }
     maven { url 'https://maven.fabric.io/public' }
+    mavenCentral()
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}"
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile "com.android.support:appcompat-v7:${appCompatVersion}"
@@ -80,6 +84,16 @@ dependencies {
     debugCompile "com.facebook.stetho:stetho-urlconnection:${stethoVersion}"
 
     testCompile "junit:junit:${jUnitVersion}"
+}
+
+buildscript {
+    ext.kotlin_version = '1.0.0-beta-2423'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
 }
 
 def getDetails() {

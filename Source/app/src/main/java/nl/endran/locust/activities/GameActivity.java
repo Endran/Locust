@@ -63,8 +63,8 @@ public class GameActivity extends BaseActivity {
             super(fm);
             fragments = new Fragment[3];
             fragments[0] = UnitsFragment.createInstance();
-            fragments[1] = ResourcesFragment.createInstance();
-            fragments[2] = TerritoryFragment.createInstance();
+            fragments[1] = ResourcesFragment.Factory.createInstance();
+            fragments[2] = TerritoryFragment.Factory.createInstance();
         }
 
         @Override
@@ -79,7 +79,8 @@ public class GameActivity extends BaseActivity {
 
         @Override
         public CharSequence getPageTitle(final int position) {
-            return stringResourceMap.getString(stringResourceMap.getStringRes(getItem(position)));
+            int stringRes = stringResourceMap.getStringRes(getItem(position));
+            return stringResourceMap.getString(stringRes);
         }
     }
 }

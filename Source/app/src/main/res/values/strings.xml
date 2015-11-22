@@ -4,6 +4,8 @@
 
 <resources>
     <string name="app_name">Locust</string>
+    <string name="placeholder">Placeholder</string>
+
     <string name="units">Units</string>
     <string name="resources">Resources</string>
     <string name="territory">Territory</string>
