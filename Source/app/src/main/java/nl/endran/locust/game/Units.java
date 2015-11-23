@@ -4,20 +4,20 @@
 
 package nl.endran.locust.game;
 
-public enum Unit {
+public enum Units {
     FOOD(null, 0),
     NYMPH(FOOD, 1);
 
-    private final Unit unitToIncrement;
+    private final Units unitsToIncrement;
     private final int incrementPerSecond;
 
-    Unit(final Unit unitToIncrement, final int incrementPerSecond) {
-        this.unitToIncrement = unitToIncrement;
+    Units(final Units unitsToIncrement, final int incrementPerSecond) {
+        this.unitsToIncrement = unitsToIncrement;
         this.incrementPerSecond = incrementPerSecond;
     }
 
-    public Unit getTargetUnit() {
-        return unitToIncrement;
+    public Units getTargetUnit() {
+        return unitsToIncrement;
     }
 
     public int getIncrementPerSecond() {

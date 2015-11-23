@@ -14,36 +14,36 @@ import javax.inject.Inject;
 public class UnitHousing {
 
     @NonNull
-    private final Map<Unit, Double> unitCountMap = new HashMap<>();
+    private final Map<Units, Double> unitCountMap = new HashMap<>();
 
     @Inject
     public UnitHousing() {
-        Unit[] units = Unit.values();
-        for (Unit unit : units) {
+        Units[] unitses = Units.values();
+        for (Units unit : unitses) {
             unitCountMap.put(unit, 0d);
         }
 
-        unitCountMap.put(Unit.FOOD, 25d);
-        unitCountMap.put(Unit.NYMPH, 1d);
+        unitCountMap.put(Units.FOOD, 25d);
+        unitCountMap.put(Units.NYMPH, 1d);
     }
 
     public void increment(final float fraction) {
-        Unit[] units = Unit.values();
+        Units[] unitses = Units.values();
 
-        for (int i = Unit.FOOD.ordinal() + 1; i < units.length; i++) {
-            Unit unit = units[i];
-            Unit targetUnit = unit.getTargetUnit();
+        for (int i = Units.FOOD.ordinal() + 1; i < unitses.length; i++) {
+            Units unit = unitses[i];
+            Units targetUnits = unit.getTargetUnit();
 
             int flooredNumberOfUnits = (int) (double) unitCountMap.get(unit);
-            double targetNumberOfUnits = unitCountMap.get(targetUnit);
+            double targetNumberOfUnits = unitCountMap.get(targetUnits);
             double generatedTargetNumberOfUnits = unit.getIncrementPerSecond() * fraction * flooredNumberOfUnits;
 
-            unitCountMap.put(targetUnit, targetNumberOfUnits + generatedTargetNumberOfUnits);
+            unitCountMap.put(targetUnits, targetNumberOfUnits + generatedTargetNumberOfUnits);
         }
     }
 
     @NonNull
-    public Map<Unit, Double> getUnitCountMap() {
+    public Map<Units, Double> getUnitCountMap() {
         return unitCountMap;
     }
 }

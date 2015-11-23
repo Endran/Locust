@@ -11,7 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import nl.endran.locust.R
-import nl.endran.locust.game.Unit
+import nl.endran.locust.game.Units
 import nl.endran.locust.injections.findTypedViewById
 import nl.endran.locust.injections.getAppComponent
 
@@ -31,8 +31,8 @@ class UnitsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater!!.inflate(R.layout.fragment_units, container, false)
 
-        textViewFoodCount = rootView.findTypedViewById<TextView>(R.id.textViewFoodCount)
-        textViewNymphCount = rootView.findTypedViewById<TextView>(R.id.textViewNymphCount)
+        textViewFoodCount = rootView.findViewById(R.id.textViewFoodCount) as TextView
+        textViewNymphCount = rootView.findViewById(R.id.textViewNymphCount) as TextView
 
         return rootView
     }
@@ -45,16 +45,18 @@ class UnitsFragment : Fragment() {
         super.onResume()
 
         presenter = context.getAppComponent().createUnitsFragmentPresenter()
-        presenter!!.start { unitCountMap ->
-            textViewFoodCount?.text = "COUNT = ${unitCountMap[Unit.FOOD]?.toInt()}"
-            textViewNymphCount?.text = "COUNT = ${unitCountMap[Unit.NYMPH]?.toInt()}"
-        }
+        presenter!!.start (object : UnitsFragmentPresenter.ViewModel {
+            override fun updateUnitCount(unitsCountMap: Map<Units, Double>) {
+                textViewFoodCount?.text = "COUNT = ${unitsCountMap[Units.FOOD]?.toInt()}"
+                textViewNymphCount?.text = "COUNT = ${unitsCountMap[Units.NYMPH]?.toInt()}"
+            }
+        })
     }
 
     override fun onPause() {
         super.onPause()
 
-        presenter?.stop()
+        presenter!!.stop()
         presenter = null
     }
 }
