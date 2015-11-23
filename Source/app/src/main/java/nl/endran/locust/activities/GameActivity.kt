@@ -21,6 +21,9 @@ import nl.endran.locust.maps.StringResourceMap
 
 class GameActivity : BaseActivity() {
 
+    override val layoutId = R.layout.activity_game
+    override val pageName = "GameActivity"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -34,14 +37,6 @@ class GameActivity : BaseActivity() {
 
         val tabLayout = ButterKnife.findById<TabLayout>(this, R.id.tabLayout)
         tabLayout.setupWithViewPager(viewPager)
-    }
-
-    override fun getLayoutId(): Int {
-        return R.layout.activity_game
-    }
-
-    override fun getPageName(): String {
-        return "GameActivity"
     }
 
     private inner class GameFragmentPagerAdapter(fm: FragmentManager, val stringResourceMap: StringResourceMap) : FragmentPagerAdapter(fm) {

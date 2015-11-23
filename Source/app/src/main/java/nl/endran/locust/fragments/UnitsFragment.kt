@@ -12,7 +12,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import nl.endran.locust.R
 import nl.endran.locust.game.Units
-import nl.endran.locust.injections.findTypedViewById
 import nl.endran.locust.injections.getAppComponent
 
 class UnitsFragment : Fragment() {

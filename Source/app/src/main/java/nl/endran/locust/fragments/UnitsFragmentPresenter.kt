@@ -34,7 +34,3 @@ constructor(private val gameLoop: GameLoop, private val unitHousing: UnitHousing
         viewModel?.updateUnitCount(unitHousing.unitCountMap)
     }
 }
-
-interface UnitsFragmentPresenterViewModel{
-    fun updateUnitCount(unitsCountMap: Map<Units, Double>)
-}
