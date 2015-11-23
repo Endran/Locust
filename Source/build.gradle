@@ -47,7 +47,7 @@ allprojects {
     ext.jUnitVersion = '4.12'
     ext.javaxAnnotationVersion = '10.0-b28'
     ext.licenseDialogVersion = '1.8.0'
-    ext.playServicesVersion = '8.3.0'
+    ext.playServicesVersion = '8.1.0'
     ext.stethoVersion = '1.2.0'
 }
 
