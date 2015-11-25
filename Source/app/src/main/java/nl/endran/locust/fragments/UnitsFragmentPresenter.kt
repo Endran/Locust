@@ -5,8 +5,8 @@
 package nl.endran.locust.fragments
 
 import nl.endran.locust.game.GameLoop
-import nl.endran.locust.game.Units
 import nl.endran.locust.game.UnitHousing
+import nl.endran.locust.game.Units
 import javax.inject.Inject
 
 class UnitsFragmentPresenter
@@ -29,8 +29,10 @@ constructor(private val gameLoop: GameLoop, private val unitHousing: UnitHousing
         viewModel = null
     }
 
-    private val listener = GameLoop.Listener { millisSincePreviousTrigger ->
-        unitHousing.increment((millisSincePreviousTrigger.toFloat()) / 1000)
-        viewModel?.updateUnitCount(unitHousing.unitCountMap)
-    }
+    private val listener = (object : GameLoop.Listener {
+        override fun onTrigger(millisSincePreviousTrigger: Int) {
+            unitHousing.increment((millisSincePreviousTrigger.toFloat()) / 1000)
+            viewModel?.updateUnitCount(unitHousing.unitCountMap)
+        }
+    })
 }
