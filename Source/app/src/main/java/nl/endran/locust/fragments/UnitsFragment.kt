@@ -11,8 +11,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import nl.endran.locust.R
-import nl.endran.locust.game.Units
-import nl.endran.locust.injections.getAppComponent
+import nl.endran.locust.game.Food
+import nl.endran.locust.game.Nymph
+import rx.Observable
+import rx.android.schedulers.AndroidSchedulers
+import java.util.concurrent.TimeUnit
 
 class UnitsFragment : Fragment() {
 
@@ -22,8 +25,8 @@ class UnitsFragment : Fragment() {
         }
     }
 
-    var textViewFoodCount: TextView? = null
-    var textViewNymphCount: TextView? = null
+    lateinit var textViewFoodCount: TextView
+    lateinit var textViewNymphCount: TextView
 
     var presenter: UnitsFragmentPresenter? = null
 
@@ -43,19 +46,37 @@ class UnitsFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        presenter = context.getAppComponent().createUnitsFragmentPresenter()
-        presenter!!.start (object : UnitsFragmentPresenter.ViewModel {
-            override fun updateUnitCount(unitsCountMap: Map<Units, Double>) {
-                textViewFoodCount?.text = "COUNT = ${unitsCountMap[Units.FOOD]?.toInt()}"
-                textViewNymphCount?.text = "COUNT = ${unitsCountMap[Units.NYMPH]?.toInt()}"
-            }
-        })
+        val repeatObservable = Observable.interval(1000, TimeUnit.MILLISECONDS)
+
+        val nymph = Nymph(repeatObservable, 1)
+        val food = Food(repeatObservable, 1, nymph)
+        food.start()
+
+        nymph.countObservable
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    textViewNymphCount.text = "COUNT = $it"
+                }
+
+        food.countObservable
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    textViewFoodCount.text = "COUNT = $it"
+                }
+
+        //        presenter = context.getAppComponent().createUnitsFragmentPresenter()
+        //        presenter!!.start (object : UnitsFragmentPresenter.ViewModel {
+        //            override fun updateUnitCount(unitsCountMap: Map<Units, Double>) {
+        //                textViewFoodCount?.text = "COUNT = ${unitsCountMap[Units.FOOD]?.toInt()}"
+        //                textViewNymphCount?.text = "COUNT = ${unitsCountMap[Units.NYMPH]?.toInt()}"
+        //            }
+        //        })
     }
 
     override fun onPause() {
         super.onPause()
 
-        presenter!!.stop()
-        presenter = null
+        //        presenter!!.stop()
+        //        presenter = null
     }
 }
