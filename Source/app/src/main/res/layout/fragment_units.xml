@@ -18,18 +18,23 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-
         <TextView
-            android:id="@+id/textViewFood"
+            android:id="@+id/textViewNymph"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Food"/>
+            android:text="Nymph"/>
 
         <TextView
-            android:id="@+id/textViewFoodCount"
+            android:id="@+id/textViewNymphCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="000"/>
+
+        <Button
+            android:id="@+id/buttonNymph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Spawn 1"/>
 
     </LinearLayout>
 
@@ -40,13 +45,13 @@
 
 
         <TextView
-            android:id="@+id/textViewNymph"
+            android:id="@+id/textViewFood"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Nymph"/>
+            android:text="Food"/>
 
         <TextView
-            android:id="@+id/textViewNymphCount"
+            android:id="@+id/textViewFoodCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="000"/>

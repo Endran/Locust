@@ -7,13 +7,18 @@ package nl.endran.locust.game
 import rx.Observable
 import rx.Subscription
 import rx.lang.kotlin.toSingletonObservable
+import rx.schedulers.Schedulers
 
-abstract class GameUnit constructor(val repeatObservable: Observable<Long>, initialCount: Long, val sourceUnit: GameUnit?) {
+abstract class GameUnit constructor(
+        initialCount: Long,
+        val sourceUnit: GameUnit?,
+        val repeatObservable: Observable<Long>,
+        val spawnOneObservable: Observable<Unit>) {
 
     val countObservable: Observable<Long>
     var count = initialCount
 
-    var subscription: Subscription? = null
+    var subscriptionList: MutableList<Subscription> = arrayListOf()
 
     init {
         countObservable = this.toSingletonObservable()
@@ -23,13 +28,21 @@ abstract class GameUnit constructor(val repeatObservable: Observable<Long>, init
 
     fun start() {
         if (sourceUnit != null) {
-            subscription = subscribe(sourceUnit.countObservable)
+            subscriptionList.add(
+                    subscribe(sourceUnit.countObservable)
+            )
         }
+
+        subscriptionList.add(
+                spawnOneObservable
+                        .observeOn(Schedulers.computation())
+                        .subscribe { count += 1 }
+        )
     }
 
     fun stop() {
-        subscription?.unsubscribe()
-        subscription = null;
+        subscriptionList.forEach { it.unsubscribe() }
+        subscriptionList.clear()
     }
 
     abstract fun subscribe(countObservable: Observable<Long>): Subscription

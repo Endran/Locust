@@ -8,8 +8,11 @@ import rx.Observable
 import rx.Subscription
 import javax.inject.Inject
 
-class Nymph @Inject constructor(repeatObservable: Observable<Long>, count: Long)
-: GameUnit (repeatObservable, count, null) {
+class Nymph @Inject constructor(
+        count: Long,
+        repeatObservable: Observable<Long>,
+        spawnOneObservable: Observable<Unit>)
+: GameUnit (count, null, repeatObservable, spawnOneObservable) {
 
     override fun subscribe(countObservable: Observable<Long>): Subscription {
         throw UnsupportedOperationException()
