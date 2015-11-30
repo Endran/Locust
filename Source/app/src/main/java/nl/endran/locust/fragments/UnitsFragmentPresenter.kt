@@ -5,20 +5,20 @@
 package nl.endran.locust.fragments
 
 import com.jakewharton.rxbinding.view.clicks
-import nl.endran.locust.fragments.GameUnitUI
 import nl.endran.locust.R
 import nl.endran.locust.game.Spawnery
 import nl.endran.locust.game.units.Food
 import nl.endran.locust.game.units.GameUnit
+import nl.endran.locust.maps.StringResourceMap
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
 class UnitsFragmentPresenter
 @Inject
-constructor(val gameCentral: GameCentral, val spawnery: Spawnery) {
+constructor(val stringResourceMap: StringResourceMap, val gameCentral: GameCentral, val spawnery: Spawnery) {
 
-    val subsciptionList : MutableList<Subscription> = arrayListOf()
+    val subsciptionList: MutableList<Subscription> = arrayListOf()
 
     fun start(foodGameUnitUI: GameUnitUI,
               nymphGameUnitUI: GameUnitUI) {
@@ -34,14 +34,15 @@ constructor(val gameCentral: GameCentral, val spawnery: Spawnery) {
                     val context = gameUnitUI.currentProduceTextView.context
                     val maxSpawnCount = it.getMaxSpawnCount()
 
-                    gameUnitUI.nameTextView.text = it.javaClass.simpleName
+                    gameUnitUI.nameTextView.text = stringResourceMap.getString(it.javaClass)
 
                     if (it is Food) {
                         gameUnitUI.currentProduceTextView.text = context.getString(
                                 R.string.current_food, it.count)
                     } else {
                         gameUnitUI.currentProduceTextView.text = context.getString(
-                                R.string.current_produce, it.count, it.produceModifier, it.productionUnit!!.javaClass.simpleName)
+                                R.string.current_produce, it.count, it.produceModifier,
+                                stringResourceMap.getString(it.productionUnit!!.javaClass))
 
                     }
 
