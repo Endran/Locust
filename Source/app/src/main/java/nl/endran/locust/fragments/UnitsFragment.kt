@@ -9,14 +9,11 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
-import com.jakewharton.rxbinding.view.clicks
+import nl.endran.locust.GameUnitUI
 import nl.endran.locust.R
-import nl.endran.locust.game.Food
-import nl.endran.locust.game.Nymph
-import rx.Observable
-import rx.android.schedulers.AndroidSchedulers
-import java.util.concurrent.TimeUnit
+import nl.endran.locust.injections.getAppComponent
 
 class UnitsFragment : Fragment() {
 
@@ -26,20 +23,31 @@ class UnitsFragment : Fragment() {
         }
     }
 
-    lateinit var textViewFoodCount: TextView
-    lateinit var textViewNymphCount: TextView
-    lateinit var buttonNymph: View
+    lateinit var foodUnitUI: GameUnitUI;
+    lateinit var nymphUnitUI: GameUnitUI;
 
     var presenter: UnitsFragmentPresenter? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater!!.inflate(R.layout.fragment_units, container, false)
 
-        textViewFoodCount = rootView.findViewById(R.id.textViewFoodCount) as TextView
-        textViewNymphCount = rootView.findViewById(R.id.textViewNymphCount) as TextView
-        buttonNymph = rootView.findViewById(R.id.buttonNymph)
+        foodUnitUI = inflateGameUnitUI(rootView, R.id.foodView)
+        nymphUnitUI = inflateGameUnitUI(rootView, R.id.nymphView)
 
         return rootView
+    }
+
+    private fun inflateGameUnitUI(rootView: View, viewId: Int): GameUnitUI {
+        val view = rootView.findViewById(viewId)
+        var gameUnitUI = GameUnitUI(
+                view.findViewById(R.id.textViewName) as TextView,
+                view.findViewById(R.id.textViewCurrentProduce) as TextView,
+                view.findViewById(R.id.textViewSpawnCost) as TextView,
+                view.findViewById(R.id.buttonSpawnOne) as Button,
+                view.findViewById(R.id.buttonSpawn50Percent) as Button,
+                view.findViewById(R.id.buttonSpawn100Percent) as Button
+        )
+        return gameUnitUI
     }
 
     override fun onDestroyView() {
@@ -49,38 +57,14 @@ class UnitsFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        val repeatObservable = Observable.interval(1000, TimeUnit.MILLISECONDS)
-
-        val nymph = Nymph(1, repeatObservable, buttonNymph.clicks())
-        nymph.start()
-        nymph.countObservable
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    textViewNymphCount.text = "COUNT = $it"
-                }
-
-        val food = Food(1, nymph, repeatObservable, Observable.never())
-        food.start()
-        food.countObservable
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    textViewFoodCount.text = "COUNT = $it"
-                }
-
-
-        //        presenter = context.getAppComponent().createUnitsFragmentPresenter()
-        //        presenter!!.start (object : UnitsFragmentPresenter.ViewModel {
-        //            override fun updateUnitCount(unitsCountMap: Map<Units, Double>) {
-        //                textViewFoodCount?.text = "COUNT = ${unitsCountMap[Units.FOOD]?.toInt()}"
-        //                textViewNymphCount?.text = "COUNT = ${unitsCountMap[Units.NYMPH]?.toInt()}"
-        //            }
-        //        })
+        presenter = context.getAppComponent().createUnitsFragmentPresenter();
+        presenter!!.start(foodUnitUI, nymphUnitUI)
     }
 
     override fun onPause() {
         super.onPause()
 
-        //        presenter!!.stop()
-        //        presenter = null
+        presenter!!.stop()
+        presenter = null
     }
 }

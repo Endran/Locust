@@ -10,6 +10,7 @@ import dagger.Component;
 import nl.endran.locust.App;
 import nl.endran.locust.activities.BaseActivity;
 import nl.endran.locust.activities.GameActivity;
+import nl.endran.locust.fragments.GameCentral;
 import nl.endran.locust.fragments.UnitsFragmentPresenter;
 import nl.endran.locust.maps.StringResourceMap;
 import nl.endran.locust.wrappers.AdManager;
@@ -32,4 +33,6 @@ public interface AppComponent {
     Analytics getAnalytics();
 
     AdManager getAdManager();
+
+    GameCentral getGameCentral();
 }

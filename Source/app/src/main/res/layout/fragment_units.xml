@@ -8,54 +8,16 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Units"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textViewNymph"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="Nymph"/>
-
-        <TextView
-            android:id="@+id/textViewNymphCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="000"/>
-
-        <Button
-            android:id="@+id/buttonNymph"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Spawn 1"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    <include layout="@layout/view_unit_count_and_spawn"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:id="@+id/nymphView"/>
 
 
-        <TextView
-            android:id="@+id/textViewFood"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="Food"/>
 
-        <TextView
-            android:id="@+id/textViewFoodCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="000"/>
-
-    </LinearLayout>
+    <include layout="@layout/view_unit_count_and_spawn"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:id="@+id/foodView"/>
 
 </LinearLayout>

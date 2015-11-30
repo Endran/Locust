@@ -27,6 +27,8 @@ class GameActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        getAppComponent().gameCentral.start()
+
         val stringResourceMap = getAppComponent().stringResourceMap
 
         val toolbar = ButterKnife.findById<Toolbar>(this, R.id.toolbar)
@@ -37,6 +39,12 @@ class GameActivity : BaseActivity() {
 
         val tabLayout = ButterKnife.findById<TabLayout>(this, R.id.tabLayout)
         tabLayout.setupWithViewPager(viewPager)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        getAppComponent().gameCentral.stop()
     }
 
     private inner class GameFragmentPagerAdapter(fm: FragmentManager, val stringResourceMap: StringResourceMap) : FragmentPagerAdapter(fm) {
