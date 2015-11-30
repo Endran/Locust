@@ -10,12 +10,15 @@ import nl.endran.locust.R
 import nl.endran.locust.game.Spawnery
 import nl.endran.locust.game.units.Food
 import nl.endran.locust.game.units.GameUnit
+import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
 class UnitsFragmentPresenter
 @Inject
 constructor(val gameCentral: GameCentral, val spawnery: Spawnery) {
+
+    val subsciptionList : MutableList<Subscription> = arrayListOf()
 
     fun start(foodGameUnitUI: GameUnitUI,
               nymphGameUnitUI: GameUnitUI) {
@@ -25,7 +28,7 @@ constructor(val gameCentral: GameCentral, val spawnery: Spawnery) {
     }
 
     private fun prepareGameUnit(gameUnit: GameUnit<*>, gameUnitUI: GameUnitUI) {
-        gameUnit.updateObservable
+        var subscription = gameUnit.updateObservable
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     val context = gameUnitUI.currentProduceTextView.context
@@ -53,6 +56,7 @@ constructor(val gameCentral: GameCentral, val spawnery: Spawnery) {
                     gameUnitUI.spawn100PercentButton.isEnabled = maxSpawnCount > 2
                     gameUnitUI.spawn100PercentButton.text = context.getString(R.string.spawn, Math.max(3, maxSpawnCount))
                 }
+        subsciptionList.add(subscription)
 
         spawnery.setSpawnObservable(gameUnit,
                 gameUnitUI.spawnOneButton.clicks(),
@@ -62,5 +66,7 @@ constructor(val gameCentral: GameCentral, val spawnery: Spawnery) {
 
     fun stop() {
         spawnery.unSubscribeAll()
+        subsciptionList.forEach { it.unsubscribe() }
+        subsciptionList.clear()
     }
 }

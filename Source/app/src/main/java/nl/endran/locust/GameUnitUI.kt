@@ -4,11 +4,13 @@
 
 package nl.endran.locust
 
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import rx.Observable
 
 data class GameUnitUI constructor(
+        val view : View,
         val nameTextView: TextView,
         val currentProduceTextView: TextView,
         val spawnCostTextView: TextView,

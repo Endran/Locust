@@ -31,6 +31,7 @@ class UnitsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater!!.inflate(R.layout.fragment_units, container, false)
 
+        rootView.findViewById(R.id.foodView).findViewById(R.id.viewButtons).visibility = View.GONE
         foodUnitUI = inflateGameUnitUI(rootView, R.id.foodView)
         nymphUnitUI = inflateGameUnitUI(rootView, R.id.nymphView)
 
@@ -40,6 +41,7 @@ class UnitsFragment : Fragment() {
     private fun inflateGameUnitUI(rootView: View, viewId: Int): GameUnitUI {
         val view = rootView.findViewById(viewId)
         var gameUnitUI = GameUnitUI(
+                view,
                 view.findViewById(R.id.textViewName) as TextView,
                 view.findViewById(R.id.textViewCurrentProduce) as TextView,
                 view.findViewById(R.id.textViewSpawnCost) as TextView,
