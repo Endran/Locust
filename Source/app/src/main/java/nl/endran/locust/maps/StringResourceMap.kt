@@ -12,6 +12,7 @@ import nl.endran.locust.fragments.ResourcesFragment
 import nl.endran.locust.fragments.TerritoryFragment
 import nl.endran.locust.fragments.UnitsFragment
 import nl.endran.locust.game.units.Food
+import nl.endran.locust.game.units.Hopper
 import nl.endran.locust.game.units.Nymph
 import javax.inject.Inject
 
@@ -22,7 +23,8 @@ class StringResourceMap @Inject constructor(val resources: Resources) {
             TerritoryFragment::class.java to R.string.territory,
 
             Food::class.java to R.string.food,
-            Nymph::class.java to R.string.nymph)
+            Nymph::class.java to R.string.nymph,
+            Hopper::class.java to R.string.hopper)
 
     fun getString(clazz: Class<*>): String {
         val stringId = classToStringResMap.getRaw(clazz)

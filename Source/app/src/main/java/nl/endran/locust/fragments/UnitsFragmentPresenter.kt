@@ -21,10 +21,12 @@ constructor(val stringResourceMap: StringResourceMap, val gameCentral: GameCentr
     val subsciptionList: MutableList<Subscription> = arrayListOf()
 
     fun start(foodGameUnitUI: GameUnitUI,
-              nymphGameUnitUI: GameUnitUI) {
+              nymphGameUnitUI: GameUnitUI,
+              hopperGameUnitUI: GameUnitUI) {
 
         prepareGameUnit(gameCentral.food, foodGameUnitUI)
         prepareGameUnit(gameCentral.nymph, nymphGameUnitUI)
+        prepareGameUnit(gameCentral.hopper, hopperGameUnitUI)
     }
 
     private fun prepareGameUnit(gameUnit: GameUnit<*>, gameUnitUI: GameUnitUI) {
@@ -41,9 +43,8 @@ constructor(val stringResourceMap: StringResourceMap, val gameCentral: GameCentr
                                 R.string.current_food, it.count)
                     } else {
                         gameUnitUI.currentProduceTextView.text = context.getString(
-                                R.string.current_produce, it.count, it.produceModifier,
+                                R.string.current_produce, it.count, it.count * it.produceModifier,
                                 stringResourceMap.getString(it.productionUnit!!.javaClass))
-
                     }
 
                     gameUnitUI.spawnCostTextView.text = "temp"

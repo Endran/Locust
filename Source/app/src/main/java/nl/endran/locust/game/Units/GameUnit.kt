@@ -9,11 +9,14 @@ import rx.Subscription
 import rx.lang.kotlin.toSingletonObservable
 import java.util.concurrent.TimeUnit
 
+
 abstract class GameUnit<T> constructor(
         initialCount: Long,
         private val repeatObservable: Observable<Long>,
-        val productionUnit: GameUnit<Any>?,
-        val spawnCostList: List<Pair<GameUnit<Any>, Int>>) {
+        val productionUnit: GameUnit<*>?,
+        val spawnCostList: List<GameUnit.GameUnitCost>) {
+
+    data class GameUnitCost constructor(val gameUnit: GameUnit<*>, val cost: Int)
 
     val updateObservable: Observable<GameUnit<T>>
     var count = initialCount
@@ -43,7 +46,7 @@ abstract class GameUnit<T> constructor(
     fun spawn(spawnCount: Int) {
         if (spawnCount <= getMaxSpawnCount()) {
             count += spawnCount
-            spawnCostList.forEach { it.first.count -= it.second * spawnCount }
+            spawnCostList.forEach { it.gameUnit.count -= it.cost * spawnCount }
         }
     }
 
@@ -63,7 +66,7 @@ abstract class GameUnit<T> constructor(
 
         var spawnCount = Int.MAX_VALUE
         spawnCostList.forEach {
-            spawnCount = Math.min(spawnCount, (it.first.count / it.second).toInt())
+            spawnCount = Math.min(spawnCount, (it.gameUnit.count / it.cost).toInt())
         }
 
         return spawnCount

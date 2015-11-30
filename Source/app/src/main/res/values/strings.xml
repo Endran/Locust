@@ -12,6 +12,7 @@
 
     <string name="food">Food</string>
     <string name="nymph">Nymph</string>
+    <string name="hopper">Hopper</string>
 
     <string name="current_food">You have %1$d units of food</string>
     <string name="current_produce">You have %1$d units, producing %2$d %3$s per second</string>

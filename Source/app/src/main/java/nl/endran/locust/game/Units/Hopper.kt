@@ -7,10 +7,11 @@ package nl.endran.locust.game.units
 import rx.Observable
 import javax.inject.Inject
 
-class Nymph @Inject constructor(
+class Hopper @Inject constructor(
         initialCount: Long,
         repeatObservable: Observable<Long>,
-        productionUnit: Food)
-: GameUnit<Food> (initialCount, repeatObservable, productionUnit,
-        listOf(GameUnit.GameUnitCost(productionUnit, 10))) {
+        nymph: Nymph,
+        food: Food)
+: GameUnit<Nymph> (initialCount, repeatObservable, nymph,
+        listOf(GameUnit.GameUnitCost(nymph, 1), GameUnit.GameUnitCost(food, 100))) {
 }

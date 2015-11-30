@@ -13,6 +13,7 @@ import android.widget.Button
 import android.widget.TextView
 import nl.endran.locust.fragments.GameUnitUI
 import nl.endran.locust.R
+import nl.endran.locust.game.units.Food
 import nl.endran.locust.injections.getAppComponent
 
 class UnitsFragment : Fragment() {
@@ -25,6 +26,7 @@ class UnitsFragment : Fragment() {
 
     lateinit var foodUnitUI: GameUnitUI;
     lateinit var nymphUnitUI: GameUnitUI;
+    lateinit var hopperUnitUI: GameUnitUI;
 
     var presenter: UnitsFragmentPresenter? = null
 
@@ -34,6 +36,7 @@ class UnitsFragment : Fragment() {
         rootView.findViewById(R.id.foodView).findViewById(R.id.viewButtons).visibility = View.GONE
         foodUnitUI = inflateGameUnitUI(rootView, R.id.foodView)
         nymphUnitUI = inflateGameUnitUI(rootView, R.id.nymphView)
+        hopperUnitUI = inflateGameUnitUI(rootView, R.id.hopperView)
 
         return rootView
     }
@@ -60,7 +63,7 @@ class UnitsFragment : Fragment() {
         super.onResume()
 
         presenter = context.getAppComponent().createUnitsFragmentPresenter();
-        presenter!!.start(foodUnitUI, nymphUnitUI)
+        presenter!!.start(foodUnitUI, nymphUnitUI, hopperUnitUI)
     }
 
     override fun onPause() {

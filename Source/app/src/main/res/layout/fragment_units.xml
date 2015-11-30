@@ -8,16 +8,22 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <include layout="@layout/view_unit_count_and_spawn"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:id="@+id/nymphView"/>
+    <include
+        android:id="@+id/hopperView"
+        layout="@layout/view_unit_count_and_spawn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
+    <include
+        android:id="@+id/nymphView"
+        layout="@layout/view_unit_count_and_spawn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
-
-    <include layout="@layout/view_unit_count_and_spawn"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:id="@+id/foodView"/>
+    <include
+        android:id="@+id/foodView"
+        layout="@layout/view_unit_count_and_spawn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
