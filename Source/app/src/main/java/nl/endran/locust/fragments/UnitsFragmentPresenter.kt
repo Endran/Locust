@@ -18,7 +18,7 @@ class UnitsFragmentPresenter
 @Inject
 constructor(val stringResourceMap: StringResourceMap, val gameCentral: GameCentral, val spawnery: Spawnery) {
 
-    val subsciptionList: MutableList<Subscription> = arrayListOf()
+    val subscriptionList: MutableList<Subscription> = arrayListOf()
 
     fun start(foodGameUnitUI: GameUnitUI,
               nymphGameUnitUI: GameUnitUI,
@@ -58,7 +58,7 @@ constructor(val stringResourceMap: StringResourceMap, val gameCentral: GameCentr
                     gameUnitUI.spawn100PercentButton.isEnabled = maxSpawnCount > 2
                     gameUnitUI.spawn100PercentButton.text = context.getString(R.string.spawn, Math.max(3, maxSpawnCount))
                 }
-        subsciptionList.add(subscription)
+        subscriptionList.add(subscription)
 
         spawnery.setSpawnObservable(gameUnit,
                 gameUnitUI.spawnOneButton.clicks(),
@@ -68,7 +68,7 @@ constructor(val stringResourceMap: StringResourceMap, val gameCentral: GameCentr
 
     fun stop() {
         spawnery.unSubscribeAll()
-        subsciptionList.forEach { it.unsubscribe() }
-        subsciptionList.clear()
+        subscriptionList.forEach { it.unsubscribe() }
+        subscriptionList.clear()
     }
 }

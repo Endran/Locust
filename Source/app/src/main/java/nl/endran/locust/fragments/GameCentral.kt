@@ -38,7 +38,6 @@ constructor() {
         )
     }
 
-
     fun start() {
         gameUnitList.forEach { it.start() }
     }

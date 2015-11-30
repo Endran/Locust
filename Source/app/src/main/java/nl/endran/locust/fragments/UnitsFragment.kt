@@ -24,9 +24,9 @@ class UnitsFragment : Fragment() {
         }
     }
 
-    lateinit var foodUnitUI: GameUnitUI;
-    lateinit var nymphUnitUI: GameUnitUI;
-    lateinit var hopperUnitUI: GameUnitUI;
+    lateinit var foodUnitUI: GameUnitUI
+    lateinit var nymphUnitUI: GameUnitUI
+    lateinit var hopperUnitUI: GameUnitUI
 
     var presenter: UnitsFragmentPresenter? = null
 
