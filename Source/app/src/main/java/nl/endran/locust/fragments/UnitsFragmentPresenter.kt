@@ -5,7 +5,7 @@
 package nl.endran.locust.fragments
 
 import com.jakewharton.rxbinding.view.clicks
-import nl.endran.locust.GameUnitUI
+import nl.endran.locust.fragments.GameUnitUI
 import nl.endran.locust.R
 import nl.endran.locust.game.Spawnery
 import nl.endran.locust.game.units.Food

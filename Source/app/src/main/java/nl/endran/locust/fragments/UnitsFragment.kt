@@ -11,7 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import nl.endran.locust.GameUnitUI
+import nl.endran.locust.fragments.GameUnitUI
 import nl.endran.locust.R
 import nl.endran.locust.injections.getAppComponent
 
