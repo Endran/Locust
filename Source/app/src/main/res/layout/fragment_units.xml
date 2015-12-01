@@ -3,27 +3,33 @@
   ~ Copyright (c) 2015 by David Hardy. Licensed under the Apache License, Version 2.0.
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <include
-        android:id="@+id/hopperView"
-        layout="@layout/view_unit_count_and_spawn"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <include
-        android:id="@+id/nymphView"
-        layout="@layout/view_unit_count_and_spawn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <include
+            android:id="@+id/hopperView"
+            layout="@layout/view_unit_overview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-    <include
-        android:id="@+id/foodView"
-        layout="@layout/view_unit_count_and_spawn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <include
+            android:id="@+id/nymphView"
+            layout="@layout/view_unit_overview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-</LinearLayout>
+        <include
+            android:id="@+id/foodView"
+            layout="@layout/view_unit_overview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -5,15 +5,13 @@
 package nl.endran.locust.fragments
 
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
-import nl.endran.locust.fragments.GameUnitUI
 import nl.endran.locust.R
-import nl.endran.locust.game.units.Food
 import nl.endran.locust.injections.getAppComponent
 
 class UnitsFragment : Fragment() {
@@ -33,7 +31,6 @@ class UnitsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater!!.inflate(R.layout.fragment_units, container, false)
 
-        rootView.findViewById(R.id.foodView).findViewById(R.id.viewButtons).visibility = View.GONE
         foodUnitUI = inflateGameUnitUI(rootView, R.id.foodView)
         nymphUnitUI = inflateGameUnitUI(rootView, R.id.nymphView)
         hopperUnitUI = inflateGameUnitUI(rootView, R.id.hopperView)
@@ -46,11 +43,10 @@ class UnitsFragment : Fragment() {
         var gameUnitUI = GameUnitUI(
                 view,
                 view.findViewById(R.id.textViewName) as TextView,
-                view.findViewById(R.id.textViewCurrentProduce) as TextView,
-                view.findViewById(R.id.textViewSpawnCost) as TextView,
-                view.findViewById(R.id.buttonSpawnOne) as Button,
-                view.findViewById(R.id.buttonSpawn50Percent) as Button,
-                view.findViewById(R.id.buttonSpawn100Percent) as Button
+                view.findViewById(R.id.textViewCount) as TextView,
+                view.findViewById(R.id.textViewMultiplier) as TextView,
+                view.findViewById(R.id.textViewProduce) as TextView,
+                view.findViewById(R.id.fabSpawn) as FloatingActionButton
         )
         return gameUnitUI
     }

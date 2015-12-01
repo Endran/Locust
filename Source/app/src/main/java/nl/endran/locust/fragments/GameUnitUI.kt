@@ -4,16 +4,15 @@
 
 package nl.endran.locust.fragments
 
+import android.support.design.widget.FloatingActionButton
 import android.view.View
-import android.widget.Button
 import android.widget.TextView
 
 data class GameUnitUI constructor(
         val view: View,
-        val nameTextView: TextView,
-        val currentProduceTextView: TextView,
-        val spawnCostTextView: TextView,
-        val spawnOneButton: Button,
-        val spawn50PercentButton: Button,
-        val spawn100PercentButton: Button
+        val textViewName: TextView,
+        val textViewCount: TextView,
+        val textViewMultiplier: TextView,
+        val textViewProduce: TextView,
+        val fabSpawn: FloatingActionButton
 )

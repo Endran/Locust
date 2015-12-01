@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2015 by David Hardy. Licensed under the Apache License, Version 2.0.
+  -->
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@color/red"
+             android:padding="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_gravity="start|top"
+            android:text="@string/spawn_cost_title"
+            android:textSize="@dimen/units_title_text_size"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textViewMultiplier"
+            android:layout_width="match_parent"
+            android:layout_gravity="start|bottom"
+            android:layout_height="wrap_content"
+            android:drawableStart="@mipmap/ic_launcher"
+            android:gravity="center_vertical"
+            android:text="@string/spawn_cost"
+            android:textSize="@dimen/units_detail_text_size"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|top"
+        app:backgroundTint="@color/red"
+        app:elevation="6dp"
+        tools:src="@mipmap/ic_launcher"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabSpawnOne"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="end|top"
+        android:layout_marginEnd="86dp"
+        android:layout_marginTop="15dp"
+        app:backgroundTint="@color/red"
+        app:elevation="6dp"
+        tools:src="@mipmap/ic_launcher"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabSpawn50Percent"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="end|top"
+        android:layout_marginEnd="62dp"
+        android:layout_marginTop="62dp"
+        app:backgroundTint="@color/red"
+        app:elevation="6dp"
+        tools:src="@mipmap/ic_launcher"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabSpawn100Percent"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="end|top"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="86dp"
+        app:backgroundTint="@color/red"
+        app:elevation="6dp"
+        tools:src="@mipmap/ic_launcher"/>
+
+</FrameLayout>
