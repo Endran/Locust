@@ -35,7 +35,7 @@ allprojects {
 
     ext._compileSdkVersion = 23
     ext._buildToolsVersion = '23.0.2'
-    ext._minSdkVersion = 15
+    ext._minSdkVersion = 17
     ext._targetSdkVersion = 23
     ext._versionCode = 1
 
