@@ -22,3 +22,9 @@ class ResourcesFragment : Fragment() {
         return inflater!!.inflate(R.layout.fragment_resources, container, false)
     }
 }
+
+
+// Instar
+// Pupa
+
+// These are stages the egg transform into before coming out of the POP, then becomung a Nymph
