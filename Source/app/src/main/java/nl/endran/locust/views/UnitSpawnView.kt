@@ -5,9 +5,9 @@
 package nl.endran.locust.views
 
 import android.content.Context
-import android.support.v7.widget.CardView
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
 import butterknife.bindView
@@ -17,9 +17,8 @@ import nl.endran.locust.injections.getAppComponent
 
 class UnitSpawnView(context: Context?, attrs: AttributeSet?) : FrameLayout(context, attrs) {
 
-    val cardView: CardView by bindView(R.id.cardView)
+    val spawnRoot: View by bindView(R.id.spawnRoot)
     val textViewCost: TextView by bindView(R.id.textViewCost)
-
 
     init {
         val layoutInflater = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -28,7 +27,7 @@ class UnitSpawnView(context: Context?, attrs: AttributeSet?) : FrameLayout(conte
 
     public fun init(gameUnit: GameUnit<*>) {
         val color = context.resources.getColor(R.color.red);
-        cardView.setCardBackgroundColor(color)
+        spawnRoot.setBackgroundColor(color)
         val stringResourceMap = context.getAppComponent().stringResourceMap
         val costText = gameUnit.spawnCostList
                 .map { "${it.cost} ${stringResourceMap.getString(it.gameUnit.javaClass)}" }

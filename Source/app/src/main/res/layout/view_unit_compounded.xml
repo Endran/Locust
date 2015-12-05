@@ -3,12 +3,18 @@
   ~ Copyright (c) 2015 by David Hardy. Licensed under the Apache License, Version 2.0.
   -->
 
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:padding="8dp">
+<android.support.v7.widget.CardView
+    android:id="@+id/cardView"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/units_card_vertical_padding"
+    android:layout_marginEnd="@dimen/units_card_horizontal_padding"
+    android:layout_marginStart="@dimen/units_card_horizontal_padding"
+    android:layout_marginTop="@dimen/units_card_vertical_padding"
+    android:padding="8dp">
 
     <nl.endran.locust.views.UnitDetailView
         android:id="@+id/unitDetailView"
