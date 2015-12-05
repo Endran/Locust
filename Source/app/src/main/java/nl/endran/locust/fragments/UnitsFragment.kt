@@ -15,6 +15,7 @@ import android.widget.TextView
 import butterknife.bindView
 import nl.endran.locust.R
 import nl.endran.locust.injections.getAppComponent
+import nl.endran.locust.views.UnitDetailView
 import nl.endran.locust.views.UnitSpawnView
 
 class UnitsFragment : Fragment() {
@@ -26,6 +27,7 @@ class UnitsFragment : Fragment() {
     }
 
     val unitSpawnView : UnitSpawnView by bindView(R.id.unitSpawnView)
+    val unitDetailView : UnitDetailView by bindView(R.id.unitDetailView)
 
     lateinit var foodUnitUI: GameUnitUI
     lateinit var nymphUnitUI: GameUnitUI
@@ -64,7 +66,7 @@ class UnitsFragment : Fragment() {
         super.onResume()
 
         presenter = context.getAppComponent().createUnitsFragmentPresenter();
-        presenter!!.start(unitSpawnView, foodUnitUI, nymphUnitUI, hopperUnitUI)
+        presenter!!.start(unitSpawnView, foodUnitUI, nymphUnitUI, hopperUnitUI, unitDetailView)
     }
 
     override fun onPause() {

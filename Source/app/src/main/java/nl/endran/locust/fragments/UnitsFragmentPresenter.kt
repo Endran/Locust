@@ -11,6 +11,7 @@ import nl.endran.locust.game.Spawnery
 import nl.endran.locust.game.units.Food
 import nl.endran.locust.game.units.GameUnit
 import nl.endran.locust.maps.StringResourceMap
+import nl.endran.locust.views.UnitDetailView
 import nl.endran.locust.views.UnitSpawnView
 import rx.Observable
 import rx.Subscription
@@ -26,9 +27,11 @@ constructor(val stringResourceMap: StringResourceMap, val gameCentral: GameCentr
     fun start(unitSpawnView: UnitSpawnView,
               foodGameUnitUI: GameUnitUI,
               nymphGameUnitUI: GameUnitUI,
-              hopperGameUnitUI: GameUnitUI) {
+              hopperGameUnitUI: GameUnitUI,
+              unitDetailView: UnitDetailView) {
 
         unitSpawnView.setGameUnit(gameCentral.nymph)
+        unitDetailView.setGameUnit(gameCentral.nymph)
 
         prepareGameUnit(gameCentral.food, foodGameUnitUI)
         prepareGameUnit(gameCentral.nymph, nymphGameUnitUI)
