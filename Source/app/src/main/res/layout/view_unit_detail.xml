@@ -4,12 +4,11 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:padding="8dp"
-              android:orientation="vertical">
+              android:orientation="vertical"
+              android:padding="8dp">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -38,15 +37,6 @@
                 tools:text="Nymph"/>
 
         </LinearLayout>
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fabSpawn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|right"
-            tools:src="@mipmap/ic_launcher"
-            app:backgroundTint="@color/red"
-            app:elevation="6dp"/>
 
     </FrameLayout>
 

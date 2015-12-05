@@ -27,7 +27,6 @@ class UnitDetailView(context: Context?, attrs: AttributeSet?) : FrameLayout(cont
     val textViewCount: TextView by bindView(R.id.textViewCount)
     val textViewMultiplier: TextView by bindView(R.id.textViewMultiplier)
     val textViewProduce: TextView by bindView(R.id.textViewProduce)
-    val fabSpawn: FloatingActionButton by bindView(R.id.fabSpawn)
 
     var subscription: Subscription? = null
 
@@ -36,7 +35,7 @@ class UnitDetailView(context: Context?, attrs: AttributeSet?) : FrameLayout(cont
         layoutInflater.inflate(R.layout.view_unit_detail, this, true)
     }
 
-    public fun setGameUnit(gameUnit: GameUnit<*>) {
+    public fun init(gameUnit: GameUnit<*>) {
         val stringResourceMap = context.getAppComponent().stringResourceMap
         subscription = gameUnit.updateObservable
                 .observeOn(AndroidSchedulers.mainThread())
@@ -60,11 +59,12 @@ class UnitDetailView(context: Context?, attrs: AttributeSet?) : FrameLayout(cont
                                 stringResourceMap.getString(it.productionUnit!!.javaClass))
                     }
 
-                    if (maxSpawnCount > 0) {
-                        fabSpawn.show()
-                    } else {
-                        fabSpawn.hide()
-                    }
+//                    if (maxSpawnCount > 0) {
+//                        fabSpawn.show()
+//                    } else {
+//                        fabSpawn.hide()
+//                    }
+
                     //                    spawnOneButton.text = context.getString(R.string.spawn, 1)
                     //
                     //                    spawn50PercentButton.isEnabled = maxSpawnCount > 1

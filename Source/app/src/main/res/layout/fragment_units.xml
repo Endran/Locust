@@ -12,24 +12,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <nl.endran.locust.views.UnitSpawnView
-            android:id="@+id/unitSpawnView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <nl.endran.locust.views.UnitDetailView
-            android:id="@+id/unitDetailView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
         <include
             android:id="@+id/hopperView"
             layout="@layout/view_unit_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <include
-            android:id="@+id/nymphView"
+        <nl.endran.locust.views.UnitCompoundedView
+            android:id="@+id/unitCompoundedViewNymph"
             layout="@layout/view_unit_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

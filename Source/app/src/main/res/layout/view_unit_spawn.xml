@@ -10,10 +10,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="@dimen/units_card_vertical_padding"
     android:layout_marginBottom="@dimen/units_card_vertical_padding"
     android:layout_marginEnd="@dimen/units_card_horizontal_padding"
     android:layout_marginStart="@dimen/units_card_horizontal_padding"
+    android:layout_marginTop="@dimen/units_card_vertical_padding"
     android:padding="8dp">
 
     <TextView
@@ -34,15 +34,6 @@
         android:gravity="center_vertical"
         android:text="@string/spawn_cost"
         android:textSize="@dimen/units_detail_text_size"/>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabCancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|top"
-        app:backgroundTint="@color/red"
-        app:elevation="6dp"
-        tools:src="@mipmap/ic_launcher"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabSpawnOne"

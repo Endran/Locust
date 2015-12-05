@@ -11,8 +11,7 @@ import nl.endran.locust.game.Spawnery
 import nl.endran.locust.game.units.Food
 import nl.endran.locust.game.units.GameUnit
 import nl.endran.locust.maps.StringResourceMap
-import nl.endran.locust.views.UnitDetailView
-import nl.endran.locust.views.UnitSpawnView
+import nl.endran.locust.views.UnitCompoundedView
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -24,17 +23,13 @@ constructor(val stringResourceMap: StringResourceMap, val gameCentral: GameCentr
 
     val subscriptionList: MutableList<Subscription> = arrayListOf()
 
-    fun start(unitSpawnView: UnitSpawnView,
-              foodGameUnitUI: GameUnitUI,
-              nymphGameUnitUI: GameUnitUI,
-              hopperGameUnitUI: GameUnitUI,
-              unitDetailView: UnitDetailView) {
+    fun start(foodGameUnitUI: GameUnitUI,
+              unitCompoundedViewNymph : UnitCompoundedView,
+              hopperGameUnitUI: GameUnitUI) {
 
-        unitSpawnView.setGameUnit(gameCentral.nymph)
-        unitDetailView.setGameUnit(gameCentral.nymph)
+        unitCompoundedViewNymph.prepare(gameCentral.nymph)
 
         prepareGameUnit(gameCentral.food, foodGameUnitUI)
-        prepareGameUnit(gameCentral.nymph, nymphGameUnitUI)
         prepareGameUnit(gameCentral.hopper, hopperGameUnitUI)
     }
 
@@ -61,11 +56,11 @@ constructor(val stringResourceMap: StringResourceMap, val gameCentral: GameCentr
                                 R.string.produce_total, it.count * it.produceModifier, stringResourceMap.getString(it.productionUnit!!.javaClass))
                     }
 
-                    if (maxSpawnCount > 0) {
-                        gameUnitUI.fabSpawn.show()
-                    } else {
-                        gameUnitUI.fabSpawn.hide()
-                    }
+//                    if (maxSpawnCount > 0) {
+//                        gameUnitUI.fabSpawn.show()
+//                    } else {
+//                        gameUnitUI.fabSpawn.hide()
+//                    }
                     //                    gameUnitUI.spawnOneButton.text = context.getString(R.string.spawn, 1)
                     //
                     //                    gameUnitUI.spawn50PercentButton.isEnabled = maxSpawnCount > 1
@@ -75,13 +70,13 @@ constructor(val stringResourceMap: StringResourceMap, val gameCentral: GameCentr
                     //                    gameUnitUI.spawn100PercentButton.text = context.getString(R.string.spawn, Math.max(3, maxSpawnCount))
                 }
         subscriptionList.add(subscription)
-
-        spawnery.setSpawnObservable(gameUnit,
-                gameUnitUI.fabSpawn.clicks(),
-                Observable.never(),
-                Observable.never())
-//                gameUnitUI.spawn50PercentButton.clicks(),
-//                gameUnitUI.spawn100PercentButton.clicks())
+//
+//        spawnery.setSpawnObservable(gameUnit,
+//                gameUnitUI.fabSpawn.clicks(),
+//                Observable.never(),
+//                Observable.never())
+        //                gameUnitUI.spawn50PercentButton.clicks(),
+        //                gameUnitUI.spawn100PercentButton.clicks())
     }
 
     fun stop() {

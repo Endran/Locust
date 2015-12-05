@@ -5,18 +5,14 @@
 package nl.endran.locust.fragments
 
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import butterknife.bindView
 import nl.endran.locust.R
 import nl.endran.locust.injections.getAppComponent
-import nl.endran.locust.views.UnitDetailView
-import nl.endran.locust.views.UnitSpawnView
+import nl.endran.locust.views.UnitCompoundedView
 
 class UnitsFragment : Fragment() {
 
@@ -26,11 +22,8 @@ class UnitsFragment : Fragment() {
         }
     }
 
-    val unitSpawnView : UnitSpawnView by bindView(R.id.unitSpawnView)
-    val unitDetailView : UnitDetailView by bindView(R.id.unitDetailView)
-
     lateinit var foodUnitUI: GameUnitUI
-    lateinit var nymphUnitUI: GameUnitUI
+    lateinit var unitCompoundedViewNymph: UnitCompoundedView
     lateinit var hopperUnitUI: GameUnitUI
 
     var presenter: UnitsFragmentPresenter? = null
@@ -39,7 +32,7 @@ class UnitsFragment : Fragment() {
         val rootView = inflater!!.inflate(R.layout.fragment_units, container, false)
 
         foodUnitUI = inflateGameUnitUI(rootView, R.id.foodView)
-        nymphUnitUI = inflateGameUnitUI(rootView, R.id.nymphView)
+        unitCompoundedViewNymph = rootView.findViewById(R.id.unitCompoundedViewNymph) as UnitCompoundedView
         hopperUnitUI = inflateGameUnitUI(rootView, R.id.hopperView)
 
         return rootView
@@ -52,8 +45,7 @@ class UnitsFragment : Fragment() {
                 view.findViewById(R.id.textViewName) as TextView,
                 view.findViewById(R.id.textViewCount) as TextView,
                 view.findViewById(R.id.textViewMultiplier) as TextView,
-                view.findViewById(R.id.textViewProduce) as TextView,
-                view.findViewById(R.id.fabSpawn) as FloatingActionButton
+                view.findViewById(R.id.textViewProduce) as TextView
         )
         return gameUnitUI
     }
@@ -66,7 +58,7 @@ class UnitsFragment : Fragment() {
         super.onResume()
 
         presenter = context.getAppComponent().createUnitsFragmentPresenter();
-        presenter!!.start(unitSpawnView, foodUnitUI, nymphUnitUI, hopperUnitUI, unitDetailView)
+        presenter!!.start(foodUnitUI, unitCompoundedViewNymph, hopperUnitUI)
     }
 
     override fun onPause() {

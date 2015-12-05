@@ -13,6 +13,5 @@ data class GameUnitUI constructor(
         val textViewName: TextView,
         val textViewCount: TextView,
         val textViewMultiplier: TextView,
-        val textViewProduce: TextView,
-        val fabSpawn: FloatingActionButton
+        val textViewProduce: TextView
 )

@@ -20,12 +20,13 @@ class UnitSpawnView(context: Context?, attrs: AttributeSet?) : FrameLayout(conte
     val cardView: CardView by bindView(R.id.cardView)
     val textViewCost: TextView by bindView(R.id.textViewCost)
 
+
     init {
         val layoutInflater = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         layoutInflater.inflate(R.layout.view_unit_spawn, this, true)
     }
 
-    public fun setGameUnit(gameUnit: GameUnit<*>) {
+    public fun init(gameUnit: GameUnit<*>) {
         val color = context.resources.getColor(R.color.red);
         cardView.setCardBackgroundColor(color)
         val stringResourceMap = context.getAppComponent().stringResourceMap
@@ -34,5 +35,9 @@ class UnitSpawnView(context: Context?, attrs: AttributeSet?) : FrameLayout(conte
                 .reduce { s1, s2 -> "$s1, $s2" }
 
         textViewCost.text = context.getString(R.string.spawn_cost, costText)
+    }
+
+    public fun reset() {
+
     }
 }

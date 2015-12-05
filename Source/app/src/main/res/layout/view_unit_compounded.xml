@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2015 by David Hardy. Licensed under the Apache License, Version 2.0.
+  -->
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:padding="8dp">
+
+    <nl.endran.locust.views.UnitDetailView
+        android:id="@+id/unitDetailView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <nl.endran.locust.views.UnitSpawnView
+        android:id="@+id/unitSpawnView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabSpawn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        app:backgroundTint="@color/red"
+        app:elevation="6dp"
+        tools:src="@mipmap/ic_launcher"/>
+
+</android.support.v7.widget.CardView>
