@@ -7,12 +7,15 @@ package nl.endran.locust.fragments
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import butterknife.bindView
 import nl.endran.locust.R
 import nl.endran.locust.injections.getAppComponent
+import nl.endran.locust.views.UnitSpawnView
 
 class UnitsFragment : Fragment() {
 
@@ -21,6 +24,8 @@ class UnitsFragment : Fragment() {
             return UnitsFragment()
         }
     }
+
+    val unitSpawnView : UnitSpawnView by bindView(R.id.unitSpawnView)
 
     lateinit var foodUnitUI: GameUnitUI
     lateinit var nymphUnitUI: GameUnitUI
@@ -59,7 +64,7 @@ class UnitsFragment : Fragment() {
         super.onResume()
 
         presenter = context.getAppComponent().createUnitsFragmentPresenter();
-        presenter!!.start(foodUnitUI, nymphUnitUI, hopperUnitUI)
+        presenter!!.start(unitSpawnView, foodUnitUI, nymphUnitUI, hopperUnitUI)
     }
 
     override fun onPause() {

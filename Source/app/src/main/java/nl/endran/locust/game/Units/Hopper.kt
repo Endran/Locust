@@ -13,5 +13,5 @@ class Hopper @Inject constructor(
         nymph: Nymph,
         food: Food)
 : GameUnit<Nymph> (initialCount, repeatObservable, nymph,
-        listOf(GameUnit.GameUnitCost(nymph, 1), GameUnit.GameUnitCost(food, 100))) {
+        listOf(GameUnit.GameUnitCost(nymph, 10), GameUnit.GameUnitCost(food, 100))) {
 }

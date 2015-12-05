@@ -11,6 +11,7 @@ import nl.endran.locust.game.Spawnery
 import nl.endran.locust.game.units.Food
 import nl.endran.locust.game.units.GameUnit
 import nl.endran.locust.maps.StringResourceMap
+import nl.endran.locust.views.UnitSpawnView
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -22,9 +23,12 @@ constructor(val stringResourceMap: StringResourceMap, val gameCentral: GameCentr
 
     val subscriptionList: MutableList<Subscription> = arrayListOf()
 
-    fun start(foodGameUnitUI: GameUnitUI,
+    fun start(unitSpawnView: UnitSpawnView,
+              foodGameUnitUI: GameUnitUI,
               nymphGameUnitUI: GameUnitUI,
               hopperGameUnitUI: GameUnitUI) {
+
+        unitSpawnView.setGameUnit(gameCentral.nymph)
 
         prepareGameUnit(gameCentral.food, foodGameUnitUI)
         prepareGameUnit(gameCentral.nymph, nymphGameUnitUI)

@@ -18,7 +18,7 @@
     <string name="unit_count">%1$d units</string>
     <string name="produce_multiplier">%1$d bonus multiplier</string>
     <string name="produce_total">%1$d %2$s per second</string>
-    <string name="spawn_cost">%1$d %2$s per unit and a pupa</string>
+    <string name="spawn_cost">%1$s per unit and a pupa</string>
     <string name="current_food">You have %1$d units of food</string>
     <string name="current_produce">You have %1$d units, producing %2$d %3$s per second</string>
     <string name="spawn">Spawn %1$s</string>
