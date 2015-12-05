@@ -14,7 +14,7 @@
     android:layout_marginEnd="@dimen/units_card_horizontal_padding"
     android:layout_marginStart="@dimen/units_card_horizontal_padding"
     android:layout_marginTop="@dimen/units_card_vertical_padding"
-    android:padding="8dp">
+    android:padding="@dimen/units_card_inside_padding">
 
     <nl.endran.locust.views.UnitDetailView
         android:id="@+id/unitDetailView"
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         app:backgroundTint="@color/red"
-        app:elevation="6dp"
+        app:elevation="@dimen/units_card_fab_elevation"
         tools:src="@mipmap/ic_launcher"/>
 
 </android.support.v7.widget.CardView>

@@ -3,20 +3,21 @@
   ~ Copyright (c) 2015 by David Hardy. Licensed under the Apache License, Version 2.0.
   -->
 
-<FrameLayout
+<RelativeLayout
     android:id="@+id/spawnRoot"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="8dp">
+    android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/spawnTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start|top"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="@dimen/units_card_inside_padding"
+        android:layout_marginStart="@dimen/units_card_inside_padding"
         android:text="@string/spawn_cost_title"
         android:textSize="@dimen/units_title_text_size"
         android:textStyle="bold"/>
@@ -25,7 +26,8 @@
         android:id="@+id/textViewCost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="start|bottom"
+        android:layout_below="@id/spawnTitle"
+        android:layout_gravity="start|top"
         android:drawableStart="@mipmap/ic_launcher"
         android:gravity="center_vertical"
         android:text="@string/spawn_cost"
@@ -33,35 +35,38 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabSpawnOne"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_gravity="end|top"
-        android:layout_marginEnd="86dp"
-        android:layout_marginTop="15dp"
+        android:layout_width="@dimen/units_card_small_fab_size"
+        android:layout_height="@dimen/units_card_small_fab_size"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="@dimen/units_card_inside_padding"
+        android:layout_marginStart="@dimen/units_card_first_small_fab_start_margin"
         app:backgroundTint="@color/red"
-        app:elevation="6dp"
+        app:elevation="@dimen/units_card_fab_elevation"
         tools:src="@mipmap/ic_launcher"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabSpawn50Percent"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_gravity="end|top"
-        android:layout_marginEnd="62dp"
-        android:layout_marginTop="62dp"
+        android:layout_width="@dimen/units_card_small_fab_size"
+        android:layout_height="@dimen/units_card_small_fab_size"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/units_card_inside_padding"
+        android:layout_toEndOf="@id/fabSpawnOne"
+        android:layout_marginStart="@dimen/units_card_other_small_fab_start_margin"
         app:backgroundTint="@color/red"
-        app:elevation="6dp"
+        app:elevation="@dimen/units_card_fab_elevation"
         tools:src="@mipmap/ic_launcher"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabSpawn100Percent"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_gravity="end|top"
-        android:layout_marginEnd="15dp"
-        android:layout_marginTop="86dp"
+        android:layout_width="@dimen/units_card_small_fab_size"
+        android:layout_height="@dimen/units_card_small_fab_size"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/units_card_inside_padding"
+        android:layout_toEndOf="@id/fabSpawn50Percent"
+        android:layout_marginStart="@dimen/units_card_other_small_fab_start_margin"
         app:backgroundTint="@color/red"
-        app:elevation="6dp"
+        app:elevation="@dimen/units_card_fab_elevation"
         tools:src="@mipmap/ic_launcher"/>
 
-</FrameLayout>
+</RelativeLayout>
