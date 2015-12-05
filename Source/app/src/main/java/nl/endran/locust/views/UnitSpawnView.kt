@@ -15,23 +15,24 @@ import nl.endran.locust.R
 import nl.endran.locust.game.units.GameUnit
 import nl.endran.locust.injections.getAppComponent
 
-class UnitSpawnView(context: Context?, attrs: AttributeSet?) : CardView(context, attrs) {
+class UnitSpawnView(context: Context?, attrs: AttributeSet?) : FrameLayout(context, attrs) {
 
+    val cardView: CardView by bindView(R.id.cardView)
     val textViewCost: TextView by bindView(R.id.textViewCost)
 
     init {
         val layoutInflater = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         layoutInflater.inflate(R.layout.view_unit_spawn, this, true)
-
-        //        val attributes = context.obtainStyledAttributes(attrs, R.styleable.ManualEntryItem)
-        //        applyCustomAttributes(attributes)
     }
 
     public fun setGameUnit(gameUnit: GameUnit<*>) {
+        val color = context.resources.getColor(R.color.red);
+        cardView.setCardBackgroundColor(color)
         val stringResourceMap = context.getAppComponent().stringResourceMap
         val costText = gameUnit.spawnCostList
                 .map { "${it.cost} ${stringResourceMap.getString(it.gameUnit.javaClass)}" }
                 .reduce { s1, s2 -> "$s1, $s2" }
+
         textViewCost.text = context.getString(R.string.spawn_cost, costText)
     }
 }

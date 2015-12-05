@@ -9,4 +9,6 @@
 
     <dimen name="units_title_text_size">36sp</dimen>
     <dimen name="units_detail_text_size">16sp</dimen>
+    <dimen name="units_card_vertical_padding">8dp</dimen>
+    <dimen name="units_card_horizontal_padding">16dp</dimen>
 </resources>

@@ -3,32 +3,37 @@
   ~ Copyright (c) 2015 by David Hardy. Licensed under the Apache License, Version 2.0.
   -->
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:background="@color/red"
-             android:padding="8dp">
+<android.support.v7.widget.CardView
+    android:id="@+id/cardView"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/units_card_vertical_padding"
+    android:layout_marginBottom="@dimen/units_card_vertical_padding"
+    android:layout_marginEnd="@dimen/units_card_horizontal_padding"
+    android:layout_marginStart="@dimen/units_card_horizontal_padding"
+    android:padding="8dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_gravity="start|top"
-            android:text="@string/spawn_cost_title"
-            android:textSize="@dimen/units_title_text_size"
-            android:textStyle="bold"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|top"
+        android:layout_marginStart="8dp"
+        android:text="@string/spawn_cost_title"
+        android:textSize="@dimen/units_title_text_size"
+        android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/textViewCost"
-            android:layout_width="match_parent"
-            android:layout_gravity="start|bottom"
-            android:layout_height="wrap_content"
-            android:drawableStart="@mipmap/ic_launcher"
-            android:gravity="center_vertical"
-            android:text="@string/spawn_cost"
-            android:textSize="@dimen/units_detail_text_size"/>
+    <TextView
+        android:id="@+id/textViewCost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|bottom"
+        android:drawableStart="@mipmap/ic_launcher"
+        android:gravity="center_vertical"
+        android:text="@string/spawn_cost"
+        android:textSize="@dimen/units_detail_text_size"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabCancel"
@@ -72,4 +77,4 @@
         app:elevation="6dp"
         tools:src="@mipmap/ic_launcher"/>
 
-</FrameLayout>
+</android.support.v7.widget.CardView>
