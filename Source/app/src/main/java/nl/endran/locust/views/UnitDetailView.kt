@@ -5,7 +5,6 @@
 package nl.endran.locust.views
 
 import android.content.Context
-import android.support.design.widget.FloatingActionButton
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -35,7 +34,7 @@ class UnitDetailView(context: Context?, attrs: AttributeSet?) : FrameLayout(cont
         layoutInflater.inflate(R.layout.view_unit_detail, this, true)
     }
 
-    public fun init(gameUnit: GameUnit<*>) {
+    public fun prepare(gameUnit: GameUnit<*>) {
         val stringResourceMap = context.getAppComponent().stringResourceMap
         subscription = gameUnit.updateObservable
                 .observeOn(AndroidSchedulers.mainThread())
@@ -59,11 +58,11 @@ class UnitDetailView(context: Context?, attrs: AttributeSet?) : FrameLayout(cont
                                 stringResourceMap.getString(it.productionUnit!!.javaClass))
                     }
 
-//                    if (maxSpawnCount > 0) {
-//                        fabSpawn.show()
-//                    } else {
-//                        fabSpawn.hide()
-//                    }
+                    //                    if (maxSpawnCount > 0) {
+                    //                        fabSpawn.show()
+                    //                    } else {
+                    //                        fabSpawn.hide()
+                    //                    }
 
                     //                    spawnOneButton.text = context.getString(R.string.spawn, 1)
                     //
@@ -77,5 +76,6 @@ class UnitDetailView(context: Context?, attrs: AttributeSet?) : FrameLayout(cont
 
     public fun reset() {
         subscription?.unsubscribe()
+        subscription = null
     }
 }

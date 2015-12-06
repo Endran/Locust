@@ -11,8 +11,6 @@ import nl.endran.locust.App;
 import nl.endran.locust.activities.BaseActivity;
 import nl.endran.locust.activities.GameActivity;
 import nl.endran.locust.fragments.GameCentral;
-import nl.endran.locust.fragments.UnitsFragmentPresenter;
-import nl.endran.locust.game.Spawnery;
 import nl.endran.locust.maps.StringResourceMap;
 import nl.endran.locust.wrappers.AdManager;
 import nl.endran.locust.wrappers.Analytics;
@@ -27,11 +25,7 @@ public interface AppComponent {
 
     void inject(BaseActivity baseActivity);
 
-    UnitsFragmentPresenter createUnitsFragmentPresenter();
-
     StringResourceMap getStringResourceMap();
-
-    Spawnery getSpawnery();
 
     Analytics getAnalytics();
 

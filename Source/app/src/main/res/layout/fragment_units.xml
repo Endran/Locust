@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include
-            android:id="@+id/hopperView"
+        <nl.endran.locust.views.UnitCompoundedView
+            android:id="@+id/unitCompoundedViewHopper"
             layout="@layout/view_unit_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -24,8 +24,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <include
-            android:id="@+id/foodView"
+        <nl.endran.locust.views.UnitCompoundedView
+            android:id="@+id/unitCompoundedViewFood"
             layout="@layout/view_unit_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

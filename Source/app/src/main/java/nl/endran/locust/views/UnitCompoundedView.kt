@@ -29,8 +29,14 @@ class UnitCompoundedView(context: Context?, attrs: AttributeSet?) : FrameLayout(
     }
 
     public fun prepare(gameUnit: GameUnit<*>) {
-        unitDetailView.init(gameUnit)
-        unitSpawnView.init(gameUnit)
+        unitDetailView.prepare(gameUnit)
+        unitSpawnView.prepare(gameUnit)
+
+        if (gameUnit.productionUnit == null) {
+            fabSpawn.visibility = GONE
+        } else {
+            fabSpawn.visibility = VISIBLE
+        }
 
         subscription = fabSpawn.clicks()
                 .subscribe { toggleViews() }

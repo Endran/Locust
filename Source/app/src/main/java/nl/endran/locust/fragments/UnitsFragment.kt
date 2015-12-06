@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import nl.endran.locust.R
 import nl.endran.locust.injections.getAppComponent
 import nl.endran.locust.views.UnitCompoundedView
@@ -22,32 +21,18 @@ class UnitsFragment : Fragment() {
         }
     }
 
-    lateinit var foodUnitUI: GameUnitUI
+    lateinit var unitCompoundedViewFood: UnitCompoundedView
     lateinit var unitCompoundedViewNymph: UnitCompoundedView
-    lateinit var hopperUnitUI: GameUnitUI
-
-    var presenter: UnitsFragmentPresenter? = null
+    lateinit var unitCompoundedViewHopper: UnitCompoundedView
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater!!.inflate(R.layout.fragment_units, container, false)
 
-        foodUnitUI = inflateGameUnitUI(rootView, R.id.foodView)
+        unitCompoundedViewFood = rootView.findViewById(R.id.unitCompoundedViewFood) as UnitCompoundedView
         unitCompoundedViewNymph = rootView.findViewById(R.id.unitCompoundedViewNymph) as UnitCompoundedView
-        hopperUnitUI = inflateGameUnitUI(rootView, R.id.hopperView)
+        unitCompoundedViewHopper = rootView.findViewById(R.id.unitCompoundedViewHopper) as UnitCompoundedView
 
         return rootView
-    }
-
-    private fun inflateGameUnitUI(rootView: View, viewId: Int): GameUnitUI {
-        val view = rootView.findViewById(viewId)
-        var gameUnitUI = GameUnitUI(
-                view,
-                view.findViewById(R.id.textViewName) as TextView,
-                view.findViewById(R.id.textViewCount) as TextView,
-                view.findViewById(R.id.textViewMultiplier) as TextView,
-                view.findViewById(R.id.textViewProduce) as TextView
-        )
-        return gameUnitUI
     }
 
     override fun onDestroyView() {
@@ -57,14 +42,25 @@ class UnitsFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        presenter = context.getAppComponent().createUnitsFragmentPresenter();
-        presenter!!.start(foodUnitUI, unitCompoundedViewNymph, hopperUnitUI)
+        val gameCentral = context.getAppComponent().gameCentral
+
+        unitCompoundedViewFood.prepare(gameCentral.food)
+        unitCompoundedViewNymph.prepare(gameCentral.nymph)
+        unitCompoundedViewHopper.prepare(gameCentral.hopper)
     }
 
     override fun onPause() {
-        super.onPause()
-
-        presenter!!.stop()
-        presenter = null
+        unitCompoundedViewFood.reset()
+        unitCompoundedViewNymph.reset()
+        unitCompoundedViewHopper.reset()
     }
 }
+
+
+/*
+Units gather units of land, or other units
+Each unit of land produce food
+Units cost food to produce
+
+Defense/Tech units or items do some cool stuff TBD
+ */

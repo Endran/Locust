@@ -16,8 +16,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start|top"
-        android:layout_marginTop="@dimen/units_card_inside_padding"
         android:layout_marginStart="@dimen/units_card_inside_padding"
+        android:layout_marginTop="@dimen/units_card_inside_padding"
         android:text="@string/spawn_cost_title"
         android:textSize="@dimen/units_title_text_size"
         android:textStyle="bold"/>
@@ -31,6 +31,17 @@
         android:drawableStart="@mipmap/ic_launcher"
         android:gravity="center_vertical"
         android:text="@string/spawn_cost"
+        android:textSize="@dimen/units_detail_text_size"/>
+
+    <TextView
+        android:id="@+id/textViewMaxSpawn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewCost"
+        android:layout_gravity="start|top"
+        android:drawableStart="@mipmap/ic_launcher"
+        android:gravity="center_vertical"
+        android:text="@string/spawn_max"
         android:textSize="@dimen/units_detail_text_size"/>
 
     <android.support.design.widget.FloatingActionButton
