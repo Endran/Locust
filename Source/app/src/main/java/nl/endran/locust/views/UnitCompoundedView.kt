@@ -8,7 +8,8 @@ import android.content.Context
 import android.support.design.widget.FloatingActionButton
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.Animation
+import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
 import butterknife.bindView
 import com.jakewharton.rxbinding.view.clicks
@@ -48,46 +49,44 @@ class UnitCompoundedView(context: Context?, attrs: AttributeSet?) : FrameLayout(
                 .subscribe { showDetails() }
 
         showDetails()
+        unitSpawnView.visibility = INVISIBLE
     }
 
     private fun showSpawn() {
-        if (fabSpawnCancel.visibility == INVISIBLE) {
-            animateWithArc(fabSpawnCancel, fabSpawn)
+        animateWithArc(fabSpawnCancel, fabSpawn) {
+            unitSpawnView.show()
         }
-
-        unitDetailView.visibility = INVISIBLE
-        unitSpawnView.visibility = VISIBLE
-
-        fabSpawn.visibility = INVISIBLE
-        fabSpawnCancel.visibility = VISIBLE
     }
-
-//    enum class ViewToShow{
-//        DETAIL, SPAWN
-//    }
 
     private fun showDetails() {
-        if (fabSpawn.visibility == INVISIBLE) {
-            animateWithArc(fabSpawn, fabSpawnCancel)
-        }
-
-//        val viewToShow : ViewToShow.DETAIL
-
-
-        unitDetailView.visibility = VISIBLE
-        unitSpawnView.visibility = INVISIBLE
-
-        fabSpawn.visibility = VISIBLE
-        fabSpawnCancel.visibility = INVISIBLE
+        unitSpawnView.hide()
+        animateWithArc(fabSpawn, fabSpawnCancel) { }
     }
 
-    private fun animateWithArc(viewToAnimate: FloatingActionButton, source: FloatingActionButton) {
-        val arc = ArcTranslateAnimation(source.x - viewToAnimate.x, 0f,
-                source.y - viewToAnimate.y, 0f)
-        arc.duration = 300
-        arc.interpolator = AccelerateDecelerateInterpolator()
+    private fun animateWithArc(viewToAnimate: FloatingActionButton, source: FloatingActionButton, continueShowing: () -> Unit) {
+        if (viewToAnimate.visibility == INVISIBLE) {
+            val arc = ArcTranslateAnimation(source.x - viewToAnimate.x, 0f,
+                    source.y - viewToAnimate.y, 0f)
+            arc.duration = 300
+            arc.interpolator = DecelerateInterpolator()
+            viewToAnimate.startAnimation(arc)
+            arc.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(animation: Animation?) {
+                }
 
-        viewToAnimate.startAnimation(arc)
+                override fun onAnimationRepeat(animation: Animation?) {
+                }
+
+                override fun onAnimationEnd(animation: Animation?) {
+                    arc.setAnimationListener(null)
+                    continueShowing()
+                }
+            });
+        } else {
+            continueShowing()
+        }
+        viewToAnimate.visibility = VISIBLE
+        source.visibility = INVISIBLE
     }
 
     public fun reset() {

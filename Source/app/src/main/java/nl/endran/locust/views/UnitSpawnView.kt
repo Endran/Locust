@@ -9,6 +9,8 @@ import android.support.design.widget.FloatingActionButton
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import android.view.animation.AlphaAnimation
+import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
 import android.widget.TextView
 import butterknife.bindView
@@ -91,5 +93,22 @@ class UnitSpawnView(context: Context?, attrs: AttributeSet?) : FrameLayout(conte
     public fun reset() {
         subscriptionList.forEach { it.unsubscribe() }
         subscriptionList.clear()
+    }
+
+    fun show() {
+        visibility = VISIBLE
+        val fadeIn = AlphaAnimation(0f, 1f);
+        fadeIn.interpolator = DecelerateInterpolator();
+        fadeIn.duration = 150;
+        fadeIn.fillAfter = true
+        startAnimation(fadeIn);
+    }
+
+    fun hide() {
+        val fadeOut = AlphaAnimation(1f, 0f);
+        fadeOut.interpolator = DecelerateInterpolator();
+        fadeOut.duration = 150;
+        fadeOut.fillAfter = true
+        startAnimation(fadeOut);
     }
 }
