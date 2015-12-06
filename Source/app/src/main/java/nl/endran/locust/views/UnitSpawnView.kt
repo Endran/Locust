@@ -57,30 +57,6 @@ class UnitSpawnView(context: Context?, attrs: AttributeSet?) : FrameLayout(conte
                         }
         )
 
-        subscriptionList.add(
-                fabSpawnOne.clicks()
-                        .observeOn(Schedulers.computation())
-                        .filter { gameUnit.getMaxSpawnCount() > 0 }
-                        .subscribe {
-                            val spawnCount = 1
-                            gameUnit.spawn(spawnCount)
-                        }
-        )
-
-        subscriptionList.add(
-                fabSpawn50Percent.clicks()
-                        .observeOn(Schedulers.computation())
-                        .filter { gameUnit.getMaxSpawnCount() > 0 }
-                        .subscribe { gameUnit.spawn(gameUnit.getMaxSpawnCount() / 2) }
-        )
-
-        subscriptionList.add(
-                fabSpawn100Percent.clicks()
-                        .observeOn(Schedulers.computation())
-                        .filter { gameUnit.getMaxSpawnCount() > 0 }
-                        .subscribe { gameUnit.spawn(gameUnit.getMaxSpawnCount()) }
-        )
-
         val costText = gameUnit.spawnCostList
                 .map { "${it.cost} ${stringResourceMap.getString(it.gameUnit.javaClass)}" }
                 .reduce { s1, s2 -> "$s1, $s2" }

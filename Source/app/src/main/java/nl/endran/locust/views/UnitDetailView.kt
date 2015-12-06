@@ -47,7 +47,7 @@ class UnitDetailView(context: Context?, attrs: AttributeSet?) : FrameLayout(cont
                         textViewCount.text = context.getString(
                                 R.string.current_food, it.count)
                         textViewMultiplier.visibility = View.GONE
-                        textViewMultiplier.visibility = View.GONE
+                        textViewProduce.visibility = View.GONE
                     } else {
                         textViewCount.text = context.getString(
                                 R.string.unit_count, it.count)
@@ -57,20 +57,6 @@ class UnitDetailView(context: Context?, attrs: AttributeSet?) : FrameLayout(cont
                                 R.string.produce_total, it.count * it.produceModifier,
                                 stringResourceMap.getString(it.productionUnit!!.javaClass))
                     }
-
-                    //                    if (maxSpawnCount > 0) {
-                    //                        fabSpawn.show()
-                    //                    } else {
-                    //                        fabSpawn.hide()
-                    //                    }
-
-                    //                    spawnOneButton.text = context.getString(R.string.spawn, 1)
-                    //
-                    //                    spawn50PercentButton.isEnabled = maxSpawnCount > 1
-                    //                    spawn50PercentButton.text = context.getString(R.string.spawn, Math.max(maxSpawnCount / 2, 2))
-                    //
-                    //                    spawn100PercentButton.isEnabled = maxSpawnCount > 2
-                    //                    spawn100PercentButton.text = context.getString(R.string.spawn, Math.max(3, maxSpawnCount))
                 }
     }
 

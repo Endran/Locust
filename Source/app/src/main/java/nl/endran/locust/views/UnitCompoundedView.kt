@@ -17,6 +17,7 @@ import nl.endran.locust.ArcTranslateAnimation
 import nl.endran.locust.R
 import nl.endran.locust.game.units.GameUnit
 import rx.Subscription
+import rx.schedulers.Schedulers
 
 class UnitCompoundedView(context: Context?, attrs: AttributeSet?) : FrameLayout(context, attrs) {
 
@@ -25,7 +26,7 @@ class UnitCompoundedView(context: Context?, attrs: AttributeSet?) : FrameLayout(
     val fabSpawn: FloatingActionButton by bindView(R.id.fabSpawn)
     val fabSpawnCancel: FloatingActionButton by bindView(R.id.fabSpawnCancel)
 
-    var subscription: Subscription? = null
+    val subscriptionList: MutableList<Subscription> = arrayListOf()
 
     init {
         val layoutInflater = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -36,21 +37,57 @@ class UnitCompoundedView(context: Context?, attrs: AttributeSet?) : FrameLayout(
         unitDetailView.prepare(gameUnit)
         unitSpawnView.prepare(gameUnit)
 
+        unitSpawnView.visibility = INVISIBLE
+        showDetails()
+
         if (gameUnit.productionUnit == null) {
             fabSpawn.visibility = GONE
-        } else {
-            fabSpawn.visibility = VISIBLE
+            return
         }
 
-        subscription = fabSpawn.clicks()
+        subscriptionList.add(fabSpawn.clicks()
                 .subscribe { showSpawn() }
+        )
 
-        subscription = fabSpawnCancel.clicks()
+        subscriptionList.add(fabSpawnCancel.clicks()
                 .subscribe { showDetails() }
+        )
 
-        showDetails()
-        unitSpawnView.visibility = INVISIBLE
+        subscriptionList.add(
+                unitSpawnView.fabSpawnOne.clicks()
+                        .observeOn(Schedulers.computation())
+                        .filter { isSpawnViewShowing() }
+                        .filter { gameUnit.getMaxSpawnCount() > 0 }
+                        .subscribe {
+                            gameUnit.spawn(1)
+                            handler.post { showDetails() }
+                        }
+        )
+
+        subscriptionList.add(
+                unitSpawnView.fabSpawn50Percent.clicks()
+                        .observeOn(Schedulers.computation())
+                        .filter { isSpawnViewShowing() }
+                        .filter { gameUnit.getMaxSpawnCount() > 0 }
+                        .subscribe {
+                            gameUnit.spawn(gameUnit.getMaxSpawnCount() / 2)
+                            handler.post { showDetails() }
+                        }
+        )
+
+        subscriptionList.add(
+                unitSpawnView.fabSpawn100Percent.clicks()
+                        .observeOn(Schedulers.computation())
+                        .filter { isSpawnViewShowing() }
+                        .filter { gameUnit.getMaxSpawnCount() > 0 }
+                        .subscribe {
+                            gameUnit.spawn(gameUnit.getMaxSpawnCount())
+                            handler.post { showDetails() }
+                        }
+        )
     }
+
+    private fun isSpawnViewShowing() = fabSpawnCancel.visibility == VISIBLE
 
     private fun showSpawn() {
         animateWithArc(fabSpawnCancel, fabSpawn) {
@@ -92,6 +129,6 @@ class UnitCompoundedView(context: Context?, attrs: AttributeSet?) : FrameLayout(
     public fun reset() {
         unitDetailView.reset()
         unitSpawnView.reset()
-        subscription?.unsubscribe()
+        subscriptionList.forEach { it.unsubscribe() }
     }
 }
