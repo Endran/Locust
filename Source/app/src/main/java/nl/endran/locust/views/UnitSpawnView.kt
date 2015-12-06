@@ -44,7 +44,7 @@ class UnitSpawnView(context: Context?, attrs: AttributeSet?) : FrameLayout(conte
         val appComponent = context.getAppComponent()
         val stringResourceMap = appComponent.stringResourceMap
 
-        val productionUnit = stringResourceMap.getString(gameUnit.productionUnit.javaClass)
+        val productionUnit = stringResourceMap.getString(gameUnit.javaClass)
 
         subscriptionList.add(
                 gameUnit.updateObservable
@@ -68,14 +68,14 @@ class UnitSpawnView(context: Context?, attrs: AttributeSet?) : FrameLayout(conte
         subscriptionList.add(
                 fabSpawn50Percent.clicks()
                         .observeOn(Schedulers.computation())
-                        .filter { gameUnit.getMaxSpawnCount() > 1 }
+                        .filter { gameUnit.getMaxSpawnCount() > 0 }
                         .subscribe { gameUnit.spawn(gameUnit.getMaxSpawnCount() / 2) }
         )
 
         subscriptionList.add(
                 fabSpawn100Percent.clicks()
                         .observeOn(Schedulers.computation())
-                        .filter { gameUnit.getMaxSpawnCount() > 2 }
+                        .filter { gameUnit.getMaxSpawnCount() > 0 }
                         .subscribe { gameUnit.spawn(gameUnit.getMaxSpawnCount()) }
         )
 
