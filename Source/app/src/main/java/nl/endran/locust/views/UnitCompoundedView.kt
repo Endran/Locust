@@ -8,9 +8,11 @@ import android.content.Context
 import android.support.design.widget.FloatingActionButton
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.FrameLayout
 import butterknife.bindView
 import com.jakewharton.rxbinding.view.clicks
+import nl.endran.locust.ArcTranslateAnimation
 import nl.endran.locust.R
 import nl.endran.locust.game.units.GameUnit
 import rx.Subscription
@@ -20,6 +22,7 @@ class UnitCompoundedView(context: Context?, attrs: AttributeSet?) : FrameLayout(
     val unitDetailView: UnitDetailView by bindView(R.id.unitDetailView)
     val unitSpawnView: UnitSpawnView by bindView(R.id.unitSpawnView)
     val fabSpawn: FloatingActionButton by bindView(R.id.fabSpawn)
+    val fabSpawnCancel: FloatingActionButton by bindView(R.id.fabSpawnCancel)
 
     var subscription: Subscription? = null
 
@@ -39,29 +42,52 @@ class UnitCompoundedView(context: Context?, attrs: AttributeSet?) : FrameLayout(
         }
 
         subscription = fabSpawn.clicks()
-                .subscribe { toggleViews() }
+                .subscribe { showSpawn() }
+
+        subscription = fabSpawnCancel.clicks()
+                .subscribe { showDetails() }
 
         showDetails()
     }
 
-    private fun toggleViews() {
-        if (isDetailsShowing()) {
-            showSpawn()
-        } else {
-            showDetails()
-        }
-    }
-
-    private fun isDetailsShowing() = unitDetailView.visibility == VISIBLE
-
     private fun showSpawn() {
+        if (fabSpawnCancel.visibility == INVISIBLE) {
+            animateWithArc(fabSpawnCancel, fabSpawn)
+        }
+
         unitDetailView.visibility = INVISIBLE
         unitSpawnView.visibility = VISIBLE
+
+        fabSpawn.visibility = INVISIBLE
+        fabSpawnCancel.visibility = VISIBLE
     }
 
+//    enum class ViewToShow{
+//        DETAIL, SPAWN
+//    }
+
     private fun showDetails() {
+        if (fabSpawn.visibility == INVISIBLE) {
+            animateWithArc(fabSpawn, fabSpawnCancel)
+        }
+
+//        val viewToShow : ViewToShow.DETAIL
+
+
         unitDetailView.visibility = VISIBLE
         unitSpawnView.visibility = INVISIBLE
+
+        fabSpawn.visibility = VISIBLE
+        fabSpawnCancel.visibility = INVISIBLE
+    }
+
+    private fun animateWithArc(viewToAnimate: FloatingActionButton, source: FloatingActionButton) {
+        val arc = ArcTranslateAnimation(source.x - viewToAnimate.x, 0f,
+                source.y - viewToAnimate.y, 0f)
+        arc.duration = 300
+        arc.interpolator = AccelerateDecelerateInterpolator()
+
+        viewToAnimate.startAnimation(arc)
     }
 
     public fun reset() {
