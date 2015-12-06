@@ -50,6 +50,8 @@ class UnitsFragment : Fragment() {
     }
 
     override fun onPause() {
+        super.onPause()
+
         unitCompoundedViewFood.reset()
         unitCompoundedViewNymph.reset()
         unitCompoundedViewHopper.reset()
