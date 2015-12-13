@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.widget.Toolbar
 import butterknife.ButterKnife
+import kotlinx.android.synthetic.main.activity_game.*
 import nl.endran.locust.R
 import nl.endran.locust.fragments.ResourcesFragment
 import nl.endran.locust.fragments.TerritoryFragment
@@ -31,10 +32,8 @@ class GameActivity : BaseActivity() {
 
         val stringResourceMap = getAppComponent().stringResourceMap
 
-        val toolbar = ButterKnife.findById<Toolbar>(this, R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        val viewPager = ButterKnife.findById<ViewPager>(this, R.id.viewPager)
         viewPager.adapter = GameFragmentPagerAdapter(supportFragmentManager, stringResourceMap)
 
         val tabLayout = ButterKnife.findById<TabLayout>(this, R.id.tabLayout)

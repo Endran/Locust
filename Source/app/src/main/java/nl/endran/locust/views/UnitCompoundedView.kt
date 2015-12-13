@@ -11,8 +11,9 @@ import android.view.LayoutInflater
 import android.view.animation.Animation
 import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
-import butterknife.bindView
 import com.jakewharton.rxbinding.view.clicks
+import kotlinx.android.synthetic.main.view_unit_compounded.view.*
+import kotlinx.android.synthetic.main.view_unit_spawn.view.*
 import nl.endran.locust.ArcTranslateAnimation
 import nl.endran.locust.R
 import nl.endran.locust.game.units.GameUnit
@@ -20,11 +21,6 @@ import rx.Subscription
 import rx.schedulers.Schedulers
 
 class UnitCompoundedView(context: Context?, attrs: AttributeSet?) : FrameLayout(context, attrs) {
-
-    val unitDetailView: UnitDetailView by bindView(R.id.unitDetailView)
-    val unitSpawnView: UnitSpawnView by bindView(R.id.unitSpawnView)
-    val fabSpawn: FloatingActionButton by bindView(R.id.fabSpawn)
-    val fabSpawnCancel: FloatingActionButton by bindView(R.id.fabSpawnCancel)
 
     val subscriptionList: MutableList<Subscription> = arrayListOf()
 

@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
+import kotlinx.android.synthetic.main.activity_game.*
 import nl.endran.locust.R
 import nl.endran.locust.injections.getAppComponent
 
@@ -25,7 +26,6 @@ abstract class BaseActivity : AppCompatActivity() {
 
         appComponent.analytics.trackPage(pageName)
 
-        val adView = findViewById(R.id.adView) as AdView
         appComponent.adManager.checkForAds(getString(R.string.ad_url)) { shouldShowAds ->
             if (shouldShowAds) {
                 val adRequest = AdRequest.Builder().build()

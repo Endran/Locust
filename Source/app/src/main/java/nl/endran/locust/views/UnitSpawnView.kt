@@ -5,31 +5,19 @@
 package nl.endran.locust.views
 
 import android.content.Context
-import android.support.design.widget.FloatingActionButton
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.View
 import android.view.animation.AlphaAnimation
 import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
-import android.widget.TextView
-import butterknife.bindView
-import com.jakewharton.rxbinding.view.clicks
+import kotlinx.android.synthetic.main.view_unit_spawn.view.*
 import nl.endran.locust.R
 import nl.endran.locust.game.units.GameUnit
 import nl.endran.locust.injections.getAppComponent
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
 
 class UnitSpawnView(context: Context?, attrs: AttributeSet?) : FrameLayout(context, attrs) {
-
-    val spawnRoot: View by bindView(R.id.spawnRoot)
-    val textViewCost: TextView by bindView(R.id.textViewCost)
-    val textViewMaxSpawn: TextView by bindView(R.id.textViewMaxSpawn)
-    val fabSpawnOne: FloatingActionButton by bindView(R.id.fabSpawnOne)
-    val fabSpawn50Percent: FloatingActionButton by bindView(R.id.fabSpawn50Percent)
-    val fabSpawn100Percent: FloatingActionButton by bindView(R.id.fabSpawn100Percent)
 
     val subscriptionList: MutableList<Subscription> = arrayListOf()
 

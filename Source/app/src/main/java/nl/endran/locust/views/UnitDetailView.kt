@@ -9,9 +9,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.TextView
-import butterknife.bindView
+import kotlinx.android.synthetic.main.view_unit_detail.view.*
 import nl.endran.locust.R
 import nl.endran.locust.game.units.Food
 import nl.endran.locust.game.units.GameUnit
@@ -20,12 +18,6 @@ import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 
 class UnitDetailView(context: Context?, attrs: AttributeSet?) : FrameLayout(context, attrs) {
-
-    val imageViewIcon: ImageView by bindView(R.id.imageViewIcon)
-    val textViewName: TextView by bindView(R.id.textViewName)
-    val textViewCount: TextView by bindView(R.id.textViewCount)
-    val textViewMultiplier: TextView by bindView(R.id.textViewMultiplier)
-    val textViewProduce: TextView by bindView(R.id.textViewProduce)
 
     var subscription: Subscription? = null
 
